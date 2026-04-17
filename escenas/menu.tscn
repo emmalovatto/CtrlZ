@@ -158,11 +158,22 @@ anchor_top = 0.757
 anchor_bottom = 0.757
 offset_left = 95.0
 offset_top = -119.53601
-offset_right = 333.9928
+offset_right = 333.99292
 offset_bottom = 119.46399
 mouse_filter = 2
 texture = ExtResource("2_d7r87")
 expand_mode = 1
+
+[node name="boton_opciones" type="Button" parent="CanvasLayer" unique_id=821227025]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -105.0
+offset_top = 30.0
+offset_right = -35.0
+offset_bottom = 61.0
+grow_horizontal = 0
+text = "Options"
 
 [node name="menu_animacion" type="AnimationPlayer" parent="." unique_id=920274517]
 reset_on_save = false
@@ -173,4 +184,5 @@ visible = false
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_salir" to="." method="_on_boton_salir_button_up"]
+[connection signal="button_up" from="CanvasLayer/boton_opciones" to="." method="_on_boton_opciones_button_up"]
 [connection signal="animation_finished" from="menu_animacion" to="." method="_on_menu_animacion_animation_finished"]

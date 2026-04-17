@@ -13,7 +13,10 @@ config_version=5
 config/name="Ice Cream Dash"
 run/main_scene="uid://dmuy55fnxcnyb"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [physics]
 

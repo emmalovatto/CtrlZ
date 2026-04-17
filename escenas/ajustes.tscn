@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cl1ftjcra5loe"]
+
+[ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_hpxew"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=17875323]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1115268879]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hpxew")
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=456411731]
+custom_minimum_size = Vector2(500, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hpxew")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=685266345]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1295231912]
+layout_mode = 2
+text = "AJUSTES"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1949040205]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 0
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1048583232]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = " Sonido"
