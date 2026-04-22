@@ -45,3 +45,22 @@ theme_override_constants/margin_right = 0
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = " Sonido"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1803388538]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=8168469]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_hpxew")
+theme_override_constants/h_separation = 4
+theme_override_font_sizes/font_size = 16
+text = "CANCELAR"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1022160703]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 4
+theme_override_font_sizes/font_size = 16
+text = "GUARDAR"

@@ -5,6 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://b0pyo1fgxhiou" path="res://sprites/camion-helado.png" id="2_d7r87"]
 [ext_resource type="Theme" uid="uid://wklbloss7rqx" path="res://resources/menu.tres" id="4_6cq3m"]
 [ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/confirmar_salida.tscn" id="5_5t3kx"]
+[ext_resource type="Texture2D" uid="uid://dk1u1jhlfeukg" path="res://sprites/rueda-ajustes.png" id="5_56ah5"]
+[ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/ajustes.tscn" id="7_xqndx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_56ah5"]
+texture = ExtResource("5_56ah5")
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
 
 [sub_resource type="Animation" id="Animation_6cq3m"]
 length = 3.3666666
@@ -120,6 +127,7 @@ alignment = 1
 
 [node name="boton_jugar" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1863308235]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("4_6cq3m")
 action_mode = 0
 text = "JUGAR"
@@ -129,6 +137,7 @@ expand_icon = true
 
 [node name="boton_instrucciones" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=523155993]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("4_6cq3m")
 text = "COMO JUGAR"
 autowrap_mode = 2
@@ -137,6 +146,7 @@ expand_icon = true
 
 [node name="boton_salir" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=16549849]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("4_6cq3m")
 text = "SALIR"
 autowrap_mode = 2
@@ -168,18 +178,25 @@ expand_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -105.0
-offset_top = 30.0
-offset_right = -35.0
-offset_bottom = 61.0
+offset_left = -75.0
+offset_bottom = 75.0
 grow_horizontal = 0
-text = "Options"
+pivot_offset = Vector2(378, 119)
+mouse_default_cursor_shape = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_56ah5")
+icon = ExtResource("5_56ah5")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="menu_animacion" type="AnimationPlayer" parent="." unique_id=920274517]
 reset_on_save = false
 libraries/ = SubResource("AnimationLibrary_56ah5")
 
 [node name="ConfirmarSalida" parent="." unique_id=1872268099 instance=ExtResource("5_5t3kx")]
+visible = false
+
+[node name="Ajustes" parent="." unique_id=17875323 instance=ExtResource("7_xqndx")]
 visible = false
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_button_up"]

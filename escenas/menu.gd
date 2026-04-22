@@ -4,6 +4,7 @@ extends Control
 @onready var boton_instrucciones = $CanvasLayer/VBoxContainer/boton_instrucciones
 @onready var boton_salir = $CanvasLayer/VBoxContainer/boton_salir
 
+
 func _ready() -> void:
 	$ConfirmarSalida.visible = false
 
@@ -22,4 +23,5 @@ func _on_boton_salir_button_up() -> void:
 	get_tree().paused = true
 
 func _on_boton_opciones_button_up() -> void:
-	pass # Replace with function body.
+	$Ajustes.visible = true
+	get_tree().paused = true
