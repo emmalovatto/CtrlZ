@@ -4,9 +4,18 @@ extends Control
 @onready var boton_instrucciones = $CanvasLayer/VBoxContainer/boton_instrucciones
 @onready var boton_salir = $CanvasLayer/VBoxContainer/boton_salir
 
+# Cambios con sonido
+@onready var musica_menu = $MusicaMenu
+# @onready var sonido_boton = $SonidoBoton
+
+
+
 
 func _ready() -> void:
 	$ConfirmarSalida.visible = false
+	
+	# Música: inicia al entrar al menú
+	musica_menu.play()
 
 func _on_boton_jugar_button_up() -> void:
 	$menu_animacion.play("menu")
@@ -19,9 +28,13 @@ func _on_menu_animacion_animation_finished(anim_name):
 		get_tree().change_scene_to_file("res://escenas/partida.tscn")
 
 func _on_boton_salir_button_up() -> void:
+	#Sonido
+	# sonido_boton.play()
+	
 	$ConfirmarSalida.visible = true
 	get_tree().paused = true
 
 func _on_boton_opciones_button_up() -> void:
+	#Sonido
+	#sonido_boton.play()
 	$Ajustes.visible = true
-	get_tree().paused = true

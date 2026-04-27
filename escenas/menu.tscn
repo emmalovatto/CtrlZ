@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/confirmar_salida.tscn" id="5_5t3kx"]
 [ext_resource type="Texture2D" uid="uid://dk1u1jhlfeukg" path="res://sprites/rueda-ajustes.png" id="5_56ah5"]
 [ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/ajustes.tscn" id="7_xqndx"]
+[ext_resource type="AudioStream" uid="uid://cdgfjwu4fl833" path="res://audio/musica/audio_1.wav" id="8_yb3qj"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_56ah5"]
 texture = ExtResource("5_56ah5")
@@ -198,6 +199,9 @@ visible = false
 
 [node name="Ajustes" parent="." unique_id=17875323 instance=ExtResource("7_xqndx")]
 visible = false
+
+[node name="MusicaMenu" type="AudioStreamPlayer" parent="." unique_id=1645811291]
+stream = ExtResource("8_yb3qj")
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_salir" to="." method="_on_boton_salir_button_up"]
