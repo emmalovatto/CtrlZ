@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cl1ftjcra5loe"]
 
+[ext_resource type="Script" uid="uid://dyps8mdd1wae8" path="res://escenas/ajustes.gd" id="1_alb6h"]
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_hpxew"]
+[ext_resource type="PackedScene" uid="uid://13ps3qyxmlyr" path="res://escenas/barra_sonido.tscn" id="3_uvfa1"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=17875323]
+script = ExtResource("1_alb6h")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1115268879]
 anchors_preset = 15
@@ -46,11 +49,24 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = " Sonido"
 
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=92793938]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="BarraSonido" parent="PanelContainer/VBoxContainer" unique_id=677686903 instance=ExtResource("3_uvfa1")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1150399378]
+layout_mode = 2
+theme_override_constants/margin_top = 104
+
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1803388538]
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=8168469]
+[node name="cancelar" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=8168469]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_hpxew")
@@ -58,9 +74,13 @@ theme_override_constants/h_separation = 4
 theme_override_font_sizes/font_size = 16
 text = "CANCELAR"
 
-[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1022160703]
+[node name="guardar" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1022160703]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 4
 theme_override_font_sizes/font_size = 16
 text = "GUARDAR"
+
+[connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/guardar" to="." method="_on_guardar_button_up"]

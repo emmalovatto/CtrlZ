@@ -3,7 +3,7 @@ extends Control
 @onready var boton_jugar = $CanvasLayer/VBoxContainer/boton_jugar
 @onready var boton_instrucciones = $CanvasLayer/VBoxContainer/boton_instrucciones
 @onready var boton_salir = $CanvasLayer/VBoxContainer/boton_salir
-
+@onready var boton_opciones = $CanvasLayer/boton_opciones
 # Cambios con sonido
 @onready var musica_menu = $MusicaMenu
 # @onready var sonido_boton = $SonidoBoton
@@ -22,6 +22,7 @@ func _on_boton_jugar_button_up() -> void:
 	boton_jugar.visible = false
 	boton_instrucciones.visible = false
 	boton_salir.visible = false
+	boton_opciones.visible = false
 
 func _on_menu_animacion_animation_finished(anim_name):
 	if anim_name == "menu":

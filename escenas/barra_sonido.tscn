@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://13ps3qyxmlyr"]
 
+[ext_resource type="Script" uid="uid://c3uapv88484tl" path="res://escenas/barra_sonido.gd" id="1_nc3tn"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc3tn"]
 bg_color = Color(1, 1, 1, 1)
 border_width_top = 3
@@ -21,21 +23,24 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_nc3tn")
 
 [node name="HSlider" type="HSlider" parent="." unique_id=437598929]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = -1
+anchor_left = 0.522
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.522
 anchor_bottom = 0.5
-offset_left = -150.0
+offset_left = -175.344
 offset_top = -8.0
-offset_right = 200.0
+offset_right = 174.656
 offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_cd6fk")
-step = 5.0
+max_value = 10.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1948391992]
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
