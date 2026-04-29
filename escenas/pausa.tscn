@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://sgjthjqglq8e"]
+
+[ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_ety1p"]
+[ext_resource type="Script" uid="uid://bsiv0um2wb84x" path="res://escenas/pausa.gd" id="1_nllfq"]
+[ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/ajustes.tscn" id="3_xn2lb"]
+[ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/confirmar_salida.tscn" id="4_xn2lb"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1942417493]
+process_mode = 3
+script = ExtResource("1_nllfq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2058770038]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ety1p")
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1542075074]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ety1p")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=511581694]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 9
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=67796406]
+layout_mode = 2
+text = "pausa"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1380130755]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+
+[node name="boton_reanudar" type="Button" parent="PanelContainer/VBoxContainer" unique_id=625159219]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "REANUDAR"
+
+[node name="boton_ajustes" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2053927079]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "AJUSTES"
+
+[node name="boton_menu" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1249779118]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "MENU PRINCIPAL"
+
+[node name="boton_salir" type="Button" parent="PanelContainer/VBoxContainer" unique_id=302671425]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "SALIR"
+
+[node name="ajustes" parent="." unique_id=17875323 instance=ExtResource("3_xn2lb")]
+visible = false
+
+[node name="ConfirmarSalida" parent="." unique_id=1354634237 instance=ExtResource("4_xn2lb")]
+visible = false
+
+[connection signal="button_up" from="PanelContainer/VBoxContainer/boton_reanudar" to="." method="_on_reanudar_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/boton_ajustes" to="." method="_on_ajustes_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/boton_menu" to="." method="_on_menu_button_up"]
+[connection signal="button_up" from="PanelContainer/VBoxContainer/boton_salir" to="." method="_on_salir_button_up"]

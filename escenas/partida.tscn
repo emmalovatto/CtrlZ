@@ -1,3 +1,10 @@
 [gd_scene format=3 uid="uid://q7b0lm7u5jje"]
 
+[ext_resource type="Script" uid="uid://b407hi5frta5n" path="res://escenas/partida.gd" id="1_yhx8l"]
+[ext_resource type="PackedScene" uid="uid://sgjthjqglq8e" path="res://escenas/pausa.tscn" id="2_myoha"]
+
 [node name="Partida" type="Node2D" unique_id=1258901090]
+script = ExtResource("1_yhx8l")
+
+[node name="pausa" parent="." unique_id=1942417493 instance=ExtResource("2_myoha")]
+visible = false
