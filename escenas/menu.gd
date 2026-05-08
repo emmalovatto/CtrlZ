@@ -6,16 +6,15 @@ extends Control
 @onready var boton_opciones = $CanvasLayer/boton_opciones
 # Cambios con sonido
 @onready var musica_menu = $MusicaMenu
-# @onready var sonido_boton = $SonidoBoton
+@onready var sonido_boton = $SonidoBoton
 
 
 
 
 func _ready() -> void:
 	$ConfirmarSalida.visible = false
-	
-	# Música: inicia al entrar al menú
 	musica_menu.play()
+
 
 func _on_boton_jugar_button_up() -> void:
 	$menu_animacion.play("menu")
@@ -39,3 +38,7 @@ func _on_boton_opciones_button_up() -> void:
 	#Sonido
 	#sonido_boton.play()
 	$Ajustes.visible = true
+
+
+func _on_boton_jugar_mouse_entered() -> void:
+	sonido_boton.play()
