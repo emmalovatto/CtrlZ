@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dk1u1jhlfeukg" path="res://sprites/rueda-ajustes.png" id="5_56ah5"]
 [ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/menu_ajustes/ajustes.tscn" id="7_xqndx"]
 [ext_resource type="AudioStream" uid="uid://cdgfjwu4fl833" path="res://audio/musica/audio_1.wav" id="8_yb3qj"]
-[ext_resource type="AudioStream" uid="uid://db5lx8m7ryvxe" path="res://audio/efectos_sonido/sfx_1.wav" id="9_4gv4q"]
+[ext_resource type="AudioStream" uid="uid://dmuov3h5mm3rd" path="res://audio/efectos_sonido/sfx_2.wav" id="9_xcmo0"]
+[ext_resource type="AudioStream" uid="uid://rdfry877dx1p" path="res://audio/efectos_sonido/322556__estefaniabza__camion-mono-001.wav" id="10_iem4p"]
+[ext_resource type="AudioStream" uid="uid://d1wlqwbexg2n7" path="res://audio/musica/AUD-20260422-WA0063.wav" id="11_iem4p"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_56ah5"]
 texture = ExtResource("5_56ah5")
@@ -201,14 +203,23 @@ visible = false
 [node name="Ajustes" parent="." unique_id=17875323 instance=ExtResource("7_xqndx")]
 visible = false
 
-[node name="MusicaMenu" type="AudioStreamPlayer" parent="." unique_id=1645811291]
+[node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1879021218]
+stream = ExtResource("9_xcmo0")
+
+[node name="MusicaMenu" type="AudioStreamPlayer2D" parent="." unique_id=1356930276]
 stream = ExtResource("8_yb3qj")
 
-[node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1879021218]
-stream = ExtResource("9_4gv4q")
+[node name="Motor" type="AudioStreamPlayer2D" parent="." unique_id=1083482448]
+stream = ExtResource("10_iem4p")
+
+[node name="MusicaJuego" type="AudioStreamPlayer2D" parent="." unique_id=1059712929]
+stream = ExtResource("11_iem4p")
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_button_up"]
 [connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_mouse_entered"]
+[connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/boton_instrucciones" to="." method="_on_boton_instrucciones_mouse_entered"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_salir" to="." method="_on_boton_salir_button_up"]
+[connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/boton_salir" to="." method="_on_boton_salir_mouse_entered"]
 [connection signal="button_up" from="CanvasLayer/boton_opciones" to="." method="_on_boton_opciones_button_up"]
+[connection signal="mouse_entered" from="CanvasLayer/boton_opciones" to="." method="_on_boton_opciones_mouse_entered"]
 [connection signal="animation_finished" from="menu_animacion" to="." method="_on_menu_animacion_animation_finished"]
