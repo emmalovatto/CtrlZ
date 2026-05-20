@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://13ps3qyxmlyr"]
 
-[ext_resource type="Script" uid="uid://c3uapv88484tl" path="res://escenas/barra_sonido.gd" id="1_nc3tn"]
+[ext_resource type="Script" uid="uid://c3uapv88484tl" path="res://escenas/menu_ajustes/barra_sonido.gd" id="1_nc3tn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nc3tn"]
 bg_color = Color(1, 1, 1, 1)

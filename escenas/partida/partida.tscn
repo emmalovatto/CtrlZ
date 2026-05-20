@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://q7b0lm7u5jje"]
+
+[ext_resource type="Script" uid="uid://b407hi5frta5n" path="res://escenas/partida/partida.gd" id="1_tbcb8"]
+[ext_resource type="PackedScene" uid="uid://boft788uhsepp" path="res://escenas/partida/chunk_mapa.tscn" id="2_3f4ib"]
+[ext_resource type="PackedScene" uid="uid://sgjthjqglq8e" path="res://escenas/menu_principal/pausa.tscn" id="3_kaohx"]
+
+[node name="Partida" type="Node2D" unique_id=1258901090]
+script = ExtResource("1_tbcb8")
+
+[node name="chunk1" parent="." unique_id=588724200 instance=ExtResource("2_3f4ib")]
+
+[node name="chunk2" parent="." unique_id=1063984926 instance=ExtResource("2_3f4ib")]
+
+[node name="pausa" parent="." unique_id=1942417493 instance=ExtResource("3_kaohx")]
+visible = false

@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dmuy55fnxcnyb"]
 
 [ext_resource type="Texture2D" uid="uid://bbiqywi7ess1b" path="res://sprites/menu_fondo.png" id="1_vdanu"]
-[ext_resource type="Script" uid="uid://cdg1buudlq83y" path="res://escenas/menu.gd" id="2_6cq3m"]
+[ext_resource type="Script" uid="uid://cdg1buudlq83y" path="res://escenas/menu_principal/menu.gd" id="2_6cq3m"]
 [ext_resource type="Texture2D" uid="uid://b0pyo1fgxhiou" path="res://sprites/camion-helado.png" id="2_d7r87"]
 [ext_resource type="Theme" uid="uid://wklbloss7rqx" path="res://resources/menu.tres" id="4_6cq3m"]
-[ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/confirmar_salida.tscn" id="5_5t3kx"]
+[ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/menu_principal/confirmar_salida.tscn" id="5_5t3kx"]
 [ext_resource type="Texture2D" uid="uid://dk1u1jhlfeukg" path="res://sprites/rueda-ajustes.png" id="5_56ah5"]
-[ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/ajustes.tscn" id="7_xqndx"]
+[ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/menu_ajustes/ajustes.tscn" id="7_xqndx"]
 [ext_resource type="AudioStream" uid="uid://cdgfjwu4fl833" path="res://audio/musica/audio_1.wav" id="8_yb3qj"]
 [ext_resource type="AudioStream" uid="uid://db5lx8m7ryvxe" path="res://audio/efectos_sonido/sfx_1.wav" id="9_4gv4q"]
 

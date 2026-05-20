@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://boft788uhsepp"]
+
+[ext_resource type="Texture2D" uid="uid://dohqlmb73e88j" path="res://sprites/calle_ejemplo.png" id="1_ufkjf"]
+
+[node name="ChunkMapa" type="Node2D" unique_id=588724200]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1586269047]
+position = Vector2(572, 324)
+texture = ExtResource("1_ufkjf")

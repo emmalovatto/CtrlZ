@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://sgjthjqglq8e"]
 
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_ety1p"]
-[ext_resource type="Script" uid="uid://bsiv0um2wb84x" path="res://escenas/pausa.gd" id="1_nllfq"]
-[ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/ajustes.tscn" id="3_xn2lb"]
-[ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/confirmar_salida.tscn" id="4_xn2lb"]
+[ext_resource type="Script" uid="uid://bsiv0um2wb84x" path="res://escenas/menu_principal/pausa.gd" id="1_nllfq"]
+[ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/menu_ajustes/ajustes.tscn" id="3_xn2lb"]
+[ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/menu_principal/confirmar_salida.tscn" id="4_xn2lb"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1942417493]
 process_mode = 3
