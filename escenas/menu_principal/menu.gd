@@ -19,6 +19,7 @@ func _ready() -> void:
 	$ConfirmarSalida.visible = false
 	_on_musica_menu_finished()
 	musica_menu.play()
+	musica_menu.position.x = 1000
 
 func _on_boton_jugar_button_up() -> void:
 	$menu_animacion.play("menu")
@@ -26,31 +27,44 @@ func _on_boton_jugar_button_up() -> void:
 	boton_instrucciones.visible = false
 	boton_salir.visible = false
 	boton_opciones.visible = false
-	
-	_transicion_audio()
 
-func _transicion_audio() -> void:
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(musica_menu, "volume_db", -80, 1.0)
-	tween.tween_property(musica_menu, "position", 1.0, 1.0)
-	
-	await tween.finished
-	
-	sonido_transicion.position = -1.0
+	transicion_audio()
+
+func transicion_audio() -> void:
+	var tween_menu = create_tween()
+
+	tween_menu.tween_property(
+	musica_menu,
+	"position:x",
+	1000,
+	2.0
+	)
+
+	sonido_transicion.position.x = -1000
 	sonido_transicion.play()
+
+	var tween_motor = create_tween()
+
+	tween_motor.tween_property(
+	sonido_transicion,
+	"position:x",
+	1000,
+	6.0
+	)
 	
-	var tween_transicion = create_tween()
-	tween_transicion.tween_property(sonido_transicion, "position", 1.0, 0.8)
-	
-	await tween_transicion.finished
-	
-	musica_juego.volume_db = 0
-	musica_juego.position = -1.0
-	musica_juego.play()
-	
-	var tween_musica_juego = create_tween()
-	tween_musica_juego.tween_property(musica_juego, "position", 0.0, 1.0)
+	await get_tree().create_timer(3.0).timeout
+
+	#musica_juego.position.x = -1000
+	#musica_juego.play()
+
+	#var tween_juego = create_tween()
+
+	#tween_juego.tween_property(
+	#musica_juego,
+	#"position:x",
+	#0,
+	#2.0
+	#)	
 	
 func _on_menu_animacion_animation_finished(anim_name):
 	if anim_name == "menu":

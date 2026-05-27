@@ -2,6 +2,8 @@
 
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_bidog"]
 [ext_resource type="Script" uid="uid://dl6graqxjgp1g" path="res://escenas/menu_principal/confirmar_salida.gd" id="1_vrft1"]
+[ext_resource type="AudioStream" uid="uid://dmuov3h5mm3rd" path="res://audio/efectos_sonido/sfx_2.wav" id="3_p310r"]
+[ext_resource type="AudioStream" uid="uid://db5lx8m7ryvxe" path="res://audio/efectos_sonido/sfx_1.wav" id="4_ufmcp"]
 
 [node name="ConfirmarSalida" type="CanvasLayer" unique_id=1354634237]
 process_mode = 3
@@ -77,5 +79,13 @@ theme_override_constants/margin_left = 18
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
+[node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=369618717]
+stream = ExtResource("3_p310r")
+
+[node name="SonidoSalir" type="AudioStreamPlayer" parent="." unique_id=812659028]
+stream = ExtResource("4_ufmcp")
+
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/salir" to="." method="_on_salir_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/salir" to="." method="_on_salir_mouse_entered"]
