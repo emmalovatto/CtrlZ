@@ -223,3 +223,4 @@ stream = ExtResource("11_krv45")
 [connection signal="button_up" from="CanvasLayer/boton_opciones" to="." method="_on_boton_opciones_button_up"]
 [connection signal="mouse_entered" from="CanvasLayer/boton_opciones" to="." method="_on_boton_opciones_mouse_entered"]
 [connection signal="animation_finished" from="menu_animacion" to="." method="_on_menu_animacion_animation_finished"]
+[connection signal="finished" from="MusicaMenu" to="." method="_on_musica_menu_finished"]

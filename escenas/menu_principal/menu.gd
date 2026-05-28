@@ -11,15 +11,14 @@ extends Control
 @onready var musica_juego = $MusicaJuego
 
 
-
-func _on_musica_menu_finished() -> void:
-	musica_menu.play()
-
 func _ready() -> void:
 	$ConfirmarSalida.visible = false
-	_on_musica_menu_finished()
+	#_on_musica_menu_finished()
 	musica_menu.play()
-	musica_menu.position.x = 1000
+	#musica_menu.position.x = 1000
+
+#func _on_musica_menu_finished() -> void:
+	#musica_menu.play()
 
 func _on_boton_jugar_button_up() -> void:
 	$menu_animacion.play("menu")
@@ -36,8 +35,8 @@ func transicion_audio() -> void:
 	tween_menu.tween_property(
 	musica_menu,
 	"position:x",
-	1000,
-	2.0
+	-1000,
+	4.0
 	)
 
 	sonido_transicion.position.x = -1000
@@ -49,22 +48,22 @@ func transicion_audio() -> void:
 	sonido_transicion,
 	"position:x",
 	1000,
-	6.0
+	4.0
 	)
 	
 	await get_tree().create_timer(3.0).timeout
 
-	#musica_juego.position.x = -1000
-	#musica_juego.play()
+	musica_juego.position.x = -1000
+	musica_juego.play()
 
-	#var tween_juego = create_tween()
+	var tween_juego = create_tween()
 
-	#tween_juego.tween_property(
-	#musica_juego,
-	#"position:x",
-	#0,
-	#2.0
-	#)	
+	tween_juego.tween_property(
+	musica_juego,
+	"position:x",
+	0,
+	2.0
+	)	
 	
 func _on_menu_animacion_animation_finished(anim_name):
 	if anim_name == "menu":
@@ -89,3 +88,6 @@ func _on_boton_salir_mouse_entered() -> void:
 
 func _on_boton_opciones_mouse_entered() -> void:
 	sonido_boton.play()
+
+func _on_musica_menu_finished() -> void:
+	musica_menu.play()

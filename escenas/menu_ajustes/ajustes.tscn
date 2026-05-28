@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dyps8mdd1wae8" path="res://escenas/menu_ajustes/ajustes.gd" id="1_rqc2v"]
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="2_qaulv"]
 [ext_resource type="PackedScene" uid="uid://13ps3qyxmlyr" path="res://escenas/menu_ajustes/barra_sonido.tscn" id="3_b2rvp"]
+[ext_resource type="AudioStream" uid="uid://dmuov3h5mm3rd" path="res://audio/efectos_sonido/sfx_2.wav" id="4_qaulv"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=17875323]
 script = ExtResource("1_rqc2v")
@@ -82,5 +83,10 @@ theme_override_constants/h_separation = 4
 theme_override_font_sizes/font_size = 16
 text = "GUARDAR"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1506497753]
+stream = ExtResource("4_qaulv")
+
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/guardar" to="." method="_on_guardar_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/guardar" to="." method="_on_guardar_mouse_entered"]

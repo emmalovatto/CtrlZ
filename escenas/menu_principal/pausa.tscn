@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsiv0um2wb84x" path="res://escenas/menu_principal/pausa.gd" id="1_nllfq"]
 [ext_resource type="PackedScene" uid="uid://cl1ftjcra5loe" path="res://escenas/menu_ajustes/ajustes.tscn" id="3_xn2lb"]
 [ext_resource type="PackedScene" uid="uid://cfh1o8by0ijoh" path="res://escenas/menu_principal/confirmar_salida.tscn" id="4_xn2lb"]
+[ext_resource type="AudioStream" uid="uid://dmuov3h5mm3rd" path="res://audio/efectos_sonido/sfx_2.wav" id="5_8js2e"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=1942417493]
 process_mode = 3
@@ -73,7 +74,14 @@ visible = false
 [node name="ConfirmarSalida" parent="." unique_id=1354634237 instance=ExtResource("4_xn2lb")]
 visible = false
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=864673604]
+stream = ExtResource("5_8js2e")
+
 [connection signal="button_up" from="PanelContainer/VBoxContainer/boton_reanudar" to="." method="_on_reanudar_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/boton_reanudar" to="." method="_on_boton_reanudar_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/boton_ajustes" to="." method="_on_ajustes_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/boton_ajustes" to="." method="_on_boton_ajustes_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/boton_menu" to="." method="_on_menu_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/boton_menu" to="." method="_on_boton_menu_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/boton_salir" to="." method="_on_salir_button_up"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/boton_salir" to="." method="_on_boton_salir_mouse_entered"]
