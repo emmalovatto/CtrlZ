@@ -11,10 +11,12 @@ func _ready() -> void:
 
 func _on_cancelar_button_up() -> void:
 	visible = false
+	get_tree().paused = false
 	barra_sonido.value = volumen
 
 func _on_guardar_button_up() -> void:
 	visible = false
+	get_tree().paused = false
 	volumen = barra_sonido.value
 
 

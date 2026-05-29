@@ -4,6 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://boft788uhsepp" path="res://escenas/partida/chunk_mapa.tscn" id="2_3f4ib"]
 [ext_resource type="PackedScene" uid="uid://sgjthjqglq8e" path="res://escenas/menu_principal/pausa.tscn" id="3_kaohx"]
 [ext_resource type="AudioStream" uid="uid://dcvj67jkvpsm1" path="res://audio/musica/MusicaJuego.wav" id="4_3f4ib"]
+[ext_resource type="Script" uid="uid://fv8fb0qwfibb" path="res://escenas/partida/camion.gd" id="5_ccpoe"]
+[ext_resource type="Texture2D" uid="uid://0va476kvhxln" path="res://sprites/camion_arriba.png" id="5_kaohx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccpoe"]
+size = Vector2(146, 285)
 
 [node name="Partida" type="Node2D" unique_id=1258901090]
 script = ExtResource("1_tbcb8")
@@ -17,3 +22,22 @@ visible = false
 
 [node name="MusicaJuego" type="AudioStreamPlayer2D" parent="." unique_id=479899051]
 stream = ExtResource("4_3f4ib")
+
+[node name="camion" type="CharacterBody2D" parent="." unique_id=1139928182]
+position = Vector2(576, 520)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("5_ccpoe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camion" unique_id=1061836226]
+position = Vector2(2, 6.5)
+shape = SubResource("RectangleShape2D_ccpoe")
+
+[node name="Sprite2D" type="Sprite2D" parent="camion" unique_id=1762147013]
+texture = ExtResource("5_kaohx")
+
+[node name="Timer" type="Timer" parent="." unique_id=1796095413]
+autostart = true
+
+[node name="obstaculos" type="Node2D" parent="." unique_id=955666452]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

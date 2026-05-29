@@ -70,7 +70,6 @@ func _on_menu_animacion_animation_finished(anim_name):
 		get_tree().change_scene_to_file("res://escenas/partida/partida.tscn")
 
 func _on_boton_salir_button_up() -> void:
-	
 	$ConfirmarSalida.visible = true
 	get_tree().paused = true
 
