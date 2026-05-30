@@ -22,7 +22,9 @@ func _ready() -> void:
 	
 	randomize()
 	tiempo_rand()
-	
+
+func _on_musica_juego_finished() -> void:
+	musica_juego.play()
 
 func transicion_audio() -> void:
 	var tween_nivel = create_tween()
