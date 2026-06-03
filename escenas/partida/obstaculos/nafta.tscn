@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cs6y8ohvbehsa"]
+
+[ext_resource type="Script" uid="uid://dk34v0ucqfcv2" path="res://escenas/partida/obstaculos/nafta.gd" id="1_oubmy"]
+[ext_resource type="Texture2D" uid="uid://b0tkasiwu2go2" path="res://sprites/nafta.png" id="2_oubmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jaxqm"]
+size = Vector2(54, 68)
+
+[node name="nafta" type="Node2D" unique_id=926755066]
+
+[node name="nafta" type="Area2D" parent="." unique_id=708095303]
+script = ExtResource("1_oubmy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="nafta" unique_id=1008940015]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_jaxqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="nafta" unique_id=2026371362]
+scale = Vector2(1.9600013, 1.9600013)
+texture = ExtResource("2_oubmy")

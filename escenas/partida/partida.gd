@@ -6,7 +6,7 @@ extends Node2D
 @onready var camion = $camion
 @onready var musica_juego = $MusicaJuego
 
-var cono_escena = preload("res://escenas/partida/obstaculos/cono.tscn")
+var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
 var altura_chunk:float = 648.0
 var limite_izq = 376
 var limite_der = 776
@@ -55,9 +55,9 @@ func tiempo_rand():
 	$Timer.wait_time = randf_range(0.5, 1.5)
 
 func _on_timer_timeout() -> void:
-	var cono = cono_escena.instantiate()
-	cono.position = Vector2(
+	var nafta = nafta_escena.instantiate()
+	nafta.position = Vector2(
 		randf_range(limite_izq, limite_der),
 		-100
 	)
-	$obstaculos.add_child(cono)
+	$obstaculos.add_child(nafta)

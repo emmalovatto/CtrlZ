@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dcvj67jkvpsm1" path="res://audio/musica/MusicaJuego.wav" id="4_3f4ib"]
 [ext_resource type="Script" uid="uid://fv8fb0qwfibb" path="res://escenas/partida/camion.gd" id="5_ccpoe"]
 [ext_resource type="Texture2D" uid="uid://0va476kvhxln" path="res://sprites/camion_arriba.png" id="5_kaohx"]
+[ext_resource type="AudioStream" uid="uid://fb31o0kooa0r" path="res://audio/efectos_sonido/esquivar_obstaculos.wav" id="7_66wp1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccpoe"]
 size = Vector2(146, 285)
@@ -34,6 +35,9 @@ shape = SubResource("RectangleShape2D_ccpoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="camion" unique_id=1762147013]
 texture = ExtResource("5_kaohx")
+
+[node name="SonidoMovimiento" type="AudioStreamPlayer2D" parent="camion" unique_id=1312063811]
+stream = ExtResource("7_66wp1")
 
 [node name="Timer" type="Timer" parent="." unique_id=1796095413]
 autostart = true
