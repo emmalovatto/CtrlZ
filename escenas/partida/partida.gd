@@ -10,6 +10,11 @@ var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
 var altura_chunk:float = 648.0
 var limite_izq = 376
 var limite_der = 776
+var carriles = [
+	576,
+	406,
+	736
+]
 
 func _ready() -> void:
 	chunk1.position.y = 0
@@ -52,12 +57,17 @@ func _input(event: InputEvent) -> void:
 		$pausa.visible = true
 
 func tiempo_rand():
-	$Timer.wait_time = randf_range(0.5, 1.5)
+	$Timer.wait_time = randf_range(1, 2.5)
+
+func _on_choque_jugador():
+	$perder.visible = true
+	get_tree().paused = true
 
 func _on_timer_timeout() -> void:
 	var nafta = nafta_escena.instantiate()
+	nafta.choque_jugador.connect(_on_choque_jugador)
 	nafta.position = Vector2(
-		randf_range(limite_izq, limite_der),
+		carriles.pick_random(),
 		-100
 	)
 	$obstaculos.add_child(nafta)

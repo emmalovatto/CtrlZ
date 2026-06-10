@@ -6,15 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jaxqm"]
 size = Vector2(54, 68)
 
-[node name="nafta" type="Node2D" unique_id=926755066]
-
-[node name="nafta" type="Area2D" parent="." unique_id=708095303]
+[node name="nafta" type="Area2D" unique_id=708095303]
 script = ExtResource("1_oubmy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="nafta" unique_id=1008940015]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1008940015]
 position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_jaxqm")
 
-[node name="Sprite2D" type="Sprite2D" parent="nafta" unique_id=2026371362]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2026371362]
 scale = Vector2(1.9600013, 1.9600013)
 texture = ExtResource("2_oubmy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

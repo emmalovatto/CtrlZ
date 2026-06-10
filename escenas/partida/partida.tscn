@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://fv8fb0qwfibb" path="res://escenas/partida/camion.gd" id="5_ccpoe"]
 [ext_resource type="Texture2D" uid="uid://0va476kvhxln" path="res://sprites/camion_arriba.png" id="5_kaohx"]
 [ext_resource type="AudioStream" uid="uid://fb31o0kooa0r" path="res://audio/efectos_sonido/esquivar_obstaculos.wav" id="7_66wp1"]
+[ext_resource type="PackedScene" uid="uid://crqlwhl5y3uvf" path="res://escenas/partida/perder.tscn" id="8_0qvgj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccpoe"]
 size = Vector2(146, 285)
@@ -24,7 +25,7 @@ visible = false
 [node name="MusicaJuego" type="AudioStreamPlayer2D" parent="." unique_id=479899051]
 stream = ExtResource("4_3f4ib")
 
-[node name="camion" type="CharacterBody2D" parent="." unique_id=1139928182]
+[node name="camion" type="CharacterBody2D" parent="." unique_id=1139928182 groups=["player"]]
 position = Vector2(576, 520)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_ccpoe")
@@ -43,5 +44,8 @@ stream = ExtResource("7_66wp1")
 autostart = true
 
 [node name="obstaculos" type="Node2D" parent="." unique_id=955666452]
+
+[node name="perder" parent="." unique_id=59068047 instance=ExtResource("8_0qvgj")]
+visible = false
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
