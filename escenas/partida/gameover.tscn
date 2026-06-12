@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://crqlwhl5y3uvf"]
 
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_1jdpf"]
+[ext_resource type="Script" uid="uid://d137jcwt6cpgj" path="res://escenas/partida/gameover.gd" id="1_a64j1"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=59068047]
+process_mode = 3
+script = ExtResource("1_a64j1")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=852621582]
 anchors_preset = 15

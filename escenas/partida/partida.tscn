@@ -7,13 +7,21 @@
 [ext_resource type="Script" uid="uid://fv8fb0qwfibb" path="res://escenas/partida/camion.gd" id="5_ccpoe"]
 [ext_resource type="Texture2D" uid="uid://0va476kvhxln" path="res://sprites/camion_arriba.png" id="5_kaohx"]
 [ext_resource type="AudioStream" uid="uid://fb31o0kooa0r" path="res://audio/efectos_sonido/esquivar_obstaculos.wav" id="7_66wp1"]
-[ext_resource type="PackedScene" uid="uid://crqlwhl5y3uvf" path="res://escenas/partida/perder.tscn" id="8_0qvgj"]
+[ext_resource type="PackedScene" uid="uid://crqlwhl5y3uvf" path="res://escenas/partida/gameover.tscn" id="8_0qvgj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccpoe"]
 size = Vector2(146, 285)
 
 [node name="Partida" type="Node2D" unique_id=1258901090]
 script = ExtResource("1_tbcb8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1431030271]
+
+[node name="barra_nafta" type="ProgressBar" parent="CanvasLayer" unique_id=560316993]
+custom_minimum_size = Vector2(200, 0)
+offset_right = 4.0
+offset_bottom = 27.0
+step = 1.0
 
 [node name="chunk1" parent="." unique_id=588724200 instance=ExtResource("2_3f4ib")]
 
@@ -40,7 +48,7 @@ texture = ExtResource("5_kaohx")
 [node name="SonidoMovimiento" type="AudioStreamPlayer2D" parent="camion" unique_id=1312063811]
 stream = ExtResource("7_66wp1")
 
-[node name="Timer" type="Timer" parent="." unique_id=1796095413]
+[node name="timer_obstaculos" type="Timer" parent="." unique_id=1796095413]
 autostart = true
 
 [node name="obstaculos" type="Node2D" parent="." unique_id=955666452]
@@ -48,4 +56,7 @@ autostart = true
 [node name="perder" parent="." unique_id=59068047 instance=ExtResource("8_0qvgj")]
 visible = false
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="timer_nafta" type="Timer" parent="." unique_id=1101365041]
+
+[connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
+[connection signal="timeout" from="timer_nafta" to="." method="_on_timer_nafta_timeout"]

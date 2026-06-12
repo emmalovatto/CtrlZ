@@ -1,8 +1,8 @@
 extends Area2D
 
-@export var velocidad = 400
+@export var velocidad = 300
 
-signal agarrar_nafta
+signal choque_jugador
 
 func _process(delta: float) -> void:
 	position.y += velocidad * delta
@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		agarrar_nafta.emit()
+		choque_jugador.emit()

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dtcigag0s5ytt"]
+
+[ext_resource type="Script" uid="uid://cq204kr7wdykv" path="res://escenas/partida/obstaculos/auto_obstaculo.gd" id="1_2hirj"]
+[ext_resource type="Texture2D" uid="uid://do7uc7xrl4wth" path="res://sprites/auto_obstaculo.png" id="2_bqtnu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u6qk"]
+size = Vector2(340, 477)
+
+[node name="Area2D" type="Area2D" unique_id=417959352]
+scale = Vector2(0.18, 0.18)
+script = ExtResource("1_2hirj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421003050]
+position = Vector2(7, 11.5)
+shape = SubResource("RectangleShape2D_8u6qk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1552834975]
+texture = ExtResource("2_bqtnu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
