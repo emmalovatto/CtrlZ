@@ -13,9 +13,6 @@ func _physics_process(_delta: float) -> void:
 	
 	position.x = clamp(position.x, limite_izq, limite_der)
 	
-
-	if direccion != 0:
-		if !sonido_movimiento.playing:
-			sonido_movimiento.play()
-	else:
-		sonido_movimiento.stop()
+	if Input.is_action_just_pressed("mover_izquierda") \
+	or Input.is_action_just_pressed("mover_derecha"):
+		sonido_movimiento.play()
