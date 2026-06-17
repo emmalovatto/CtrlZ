@@ -2,12 +2,29 @@
 
 [ext_resource type="Script" uid="uid://b407hi5frta5n" path="res://escenas/partida/partida.gd" id="1_tbcb8"]
 [ext_resource type="PackedScene" uid="uid://boft788uhsepp" path="res://escenas/partida/chunk_mapa.tscn" id="2_3f4ib"]
+[ext_resource type="Texture2D" uid="uid://b0tkasiwu2go2" path="res://sprites/nafta.png" id="2_4ii8i"]
 [ext_resource type="PackedScene" uid="uid://sgjthjqglq8e" path="res://escenas/menu_principal/pausa.tscn" id="3_kaohx"]
 [ext_resource type="AudioStream" uid="uid://dcvj67jkvpsm1" path="res://audio/musica/MusicaJuego.wav" id="4_3f4ib"]
 [ext_resource type="Script" uid="uid://fv8fb0qwfibb" path="res://escenas/partida/camion.gd" id="5_ccpoe"]
 [ext_resource type="Texture2D" uid="uid://0va476kvhxln" path="res://sprites/camion_arriba.png" id="5_kaohx"]
 [ext_resource type="AudioStream" uid="uid://fb31o0kooa0r" path="res://audio/efectos_sonido/esquivar_obstaculos.wav" id="7_66wp1"]
 [ext_resource type="PackedScene" uid="uid://crqlwhl5y3uvf" path="res://escenas/partida/gameover.tscn" id="8_0qvgj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qvgj"]
+bg_color = Color(0.07058824, 0.078431375, 0.16078432, 0.47058824)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ii8i"]
+bg_color = Color(1, 0.3529412, 0.7137255, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccpoe"]
 size = Vector2(146, 285)
@@ -17,11 +34,31 @@ script = ExtResource("1_tbcb8")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1431030271]
 
-[node name="barra_nafta" type="ProgressBar" parent="CanvasLayer" unique_id=560316993]
-custom_minimum_size = Vector2(200, 0)
-offset_right = 4.0
-offset_bottom = 27.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1479694813]
+custom_minimum_size = Vector2(0, 15)
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 185.0
+offset_bottom = 42.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/separation = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=1064263166]
+layout_mode = 2
+texture = ExtResource("2_4ii8i")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="barra_nafta" type="ProgressBar" parent="CanvasLayer/HBoxContainer" unique_id=560316993]
+custom_minimum_size = Vector2(175, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_0qvgj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ii8i")
 step = 1.0
+show_percentage = false
 
 [node name="chunk1" parent="." unique_id=588724200 instance=ExtResource("2_3f4ib")]
 
@@ -57,6 +94,7 @@ autostart = true
 visible = false
 
 [node name="timer_nafta" type="Timer" parent="." unique_id=1101365041]
+autostart = true
 
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_nafta" to="." method="_on_timer_nafta_timeout"]

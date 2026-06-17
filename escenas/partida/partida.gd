@@ -31,8 +31,8 @@ func _ready() -> void:
 	musica_juego.play()
 	musica_juego.position.x = -1000
 	
-	$CanvasLayer/barra_nafta.max_value = nafta_max
-	$CanvasLayer/barra_nafta.value = nafta
+	$CanvasLayer/HBoxContainer/barra_nafta.max_value = nafta_max
+	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 	
 	randomize()
 	tiempo_rand()
@@ -75,16 +75,23 @@ func _on_choque_jugador():
 func _on_agarrar_nafta():
 	nafta += 10
 	nafta = min(nafta, nafta_max)
-	$barra_nafta.value = nafta
+	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 
 func _on_timer_obstaculos_timeout() -> void:
-	var obstaculo = escenas_obstaculos.pick_random().instantiate()
-	obstaculo.choque_jugador.connect(_on_choque_jugador)
-	obstaculo.position = Vector2(
+	var objeto 
+	
+	if randf() < 0.2:
+		objeto = nafta_escena.instantiate()
+		objeto.agarrar_nafta.connect(_on_agarrar_nafta)
+	else:
+		objeto = escenas_obstaculos.pick_random().instantiate()
+		objeto.choque_jugador.connect(_on_choque_jugador)
+		
+	objeto.position = Vector2(
 		carriles.pick_random(),
 		-100
 	)
-	$obstaculos.add_child(obstaculo)
+	$obstaculos.add_child(objeto)
 	
 
 func _on_timer_nafta_timeout() -> void:
@@ -93,5 +100,5 @@ func _on_timer_nafta_timeout() -> void:
 		nafta = 0
 		$perder.visible = true
 		get_tree().paused = true
-	$barra_nafta.value = nafta
+	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 	
