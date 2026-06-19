@@ -60,7 +60,22 @@ size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1150399378]
 layout_mode = 2
-theme_override_constants/margin_top = 104
+theme_override_constants/margin_top = 50
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=559461629]
+custom_minimum_size = Vector2(6, 9)
+layout_mode = 2
+theme_override_constants/separation = 172
+
+[node name="Sfx" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1086410859]
+layout_mode = 2
+
+[node name="Music" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1620312407]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=576429632]
+layout_mode = 2
+theme_override_constants/margin_top = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1803388538]
 layout_mode = 2
