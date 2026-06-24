@@ -101,6 +101,8 @@ text = "GUARDAR"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1506497753]
 stream = ExtResource("4_qaulv")
 
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer2/Sfx" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer2/Music" to="." method="_on_music_pressed"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_button_up"]
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/guardar" to="." method="_on_guardar_button_up"]
