@@ -1,7 +1,7 @@
 extends Control
 
 @onready var boton_jugar = $CanvasLayer/VBoxContainer/boton_jugar
-@onready var boton_instrucciones = $CanvasLayer/VBoxContainer/boton_instrucciones
+@onready var boton_posiciones = $CanvasLayer/VBoxContainer/boton_posiciones
 @onready var boton_salir = $CanvasLayer/VBoxContainer/boton_salir
 @onready var boton_opciones = $CanvasLayer/boton_opciones
 # Cambios con sonido
@@ -23,7 +23,7 @@ func _ready() -> void:
 func _on_boton_jugar_button_up() -> void:
 	$menu_animacion.play("menu")
 	boton_jugar.visible = false
-	boton_instrucciones.visible = false
+	boton_posiciones.visible = false
 	boton_salir.visible = false
 	boton_opciones.visible = false
 
@@ -79,9 +79,6 @@ func _on_boton_opciones_button_up() -> void:
 func _on_boton_jugar_mouse_entered() -> void:
 	sonido_boton.play()
 
-func _on_boton_instrucciones_mouse_entered() -> void:
-	sonido_boton.play()
-
 func _on_boton_salir_mouse_entered() -> void:
 	sonido_boton.play()
 
@@ -90,3 +87,6 @@ func _on_boton_opciones_mouse_entered() -> void:
 
 func _on_musica_menu_finished() -> void:
 	musica_menu.play()
+
+func _on_boton_posiciones_mouse_entered() -> void:
+	sonido_boton.play()
