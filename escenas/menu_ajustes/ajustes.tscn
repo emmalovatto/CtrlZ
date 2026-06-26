@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://dyps8mdd1wae8" path="res://escenas/menu_ajustes/ajustes.gd" id="1_rqc2v"]
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="2_qaulv"]
 [ext_resource type="PackedScene" uid="uid://13ps3qyxmlyr" path="res://escenas/menu_ajustes/barra_sonido.tscn" id="3_b2rvp"]
+[ext_resource type="Script" uid="uid://dy61p6sry0jox" path="res://escenas/menu_ajustes/music.gd" id="4_b2rvp"]
 [ext_resource type="AudioStream" uid="uid://dmuov3h5mm3rd" path="res://audio/efectos_sonido/sfx_2.wav" id="4_qaulv"]
+[ext_resource type="Texture2D" uid="uid://n5ns2r1eu0ad" path="res://sprites/unnamed.png" id="5_w17dv"]
+[ext_resource type="Texture2D" uid="uid://bnyd7h7gyhopg" path="res://sprites/boton_silenciado_sfx.png" id="6_852xq"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=17875323]
 script = ExtResource("1_rqc2v")
@@ -72,6 +75,9 @@ layout_mode = 2
 
 [node name="Music" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1844957986]
 layout_mode = 2
+script = ExtResource("4_b2rvp")
+musica = ExtResource("5_w17dv")
+silencio = ExtResource("6_852xq")
 
 [node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=576429632]
 layout_mode = 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n5ns2r1eu0ad"
-path="res://.godot/imported/unnamed.png-77a5bcff8beb4f11c56725aeba976a5e.ctex"
+uid="uid://bnyd7h7gyhopg"
+path="res://.godot/imported/boton_silenciado_sfx.png-2a4b4df3ae624c435b6b325790a5be1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/unnamed.png"
-dest_files=["res://.godot/imported/unnamed.png-77a5bcff8beb4f11c56725aeba976a5e.ctex"]
+source_file="res://sprites/boton_silenciado_sfx.png"
+dest_files=["res://.godot/imported/boton_silenciado_sfx.png-2a4b4df3ae624c435b6b325790a5be1c.ctex"]
 
 [params]
 
