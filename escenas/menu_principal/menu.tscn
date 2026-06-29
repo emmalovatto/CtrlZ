@@ -205,15 +205,19 @@ visible = false
 
 [node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=1879021218]
 stream = ExtResource("9_xcmo0")
+bus = &"Sfx"
 
 [node name="MusicaMenu" type="AudioStreamPlayer2D" parent="." unique_id=1356930276]
 stream = ExtResource("9_iem4p")
+bus = &"Music"
 
 [node name="Motor" type="AudioStreamPlayer2D" parent="." unique_id=1083482448]
 stream = ExtResource("10_k1hjg")
+bus = &"Sfx"
 
 [node name="MusicaJuego" type="AudioStreamPlayer2D" parent="." unique_id=1059712929]
 stream = ExtResource("11_krv45")
+bus = &"Music"
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_button_up"]
 [connection signal="mouse_entered" from="CanvasLayer/VBoxContainer/boton_jugar" to="." method="_on_boton_jugar_mouse_entered"]

@@ -76,6 +76,7 @@ visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=864673604]
 stream = ExtResource("5_8js2e")
+bus = &"Sfx"
 
 [connection signal="button_up" from="PanelContainer/VBoxContainer/boton_reanudar" to="." method="_on_reanudar_button_up"]
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/boton_reanudar" to="." method="_on_boton_reanudar_mouse_entered"]

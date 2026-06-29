@@ -81,9 +81,11 @@ theme_override_constants/margin_bottom = 0
 
 [node name="SonidoBoton" type="AudioStreamPlayer" parent="." unique_id=369618717]
 stream = ExtResource("3_p310r")
+bus = &"Sfx"
 
 [node name="SonidoSalir" type="AudioStreamPlayer" parent="." unique_id=812659028]
 stream = ExtResource("4_ufmcp")
+bus = &"Sfx"
 
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_button_up"]
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_mouse_entered"]

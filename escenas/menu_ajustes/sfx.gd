@@ -6,7 +6,7 @@ extends TextureButton
 var bus_index: int
 
 func _ready() -> void:
-	bus_index = AudioServer.get_bus_index("Music")
+	bus_index = AudioServer.get_bus_index("Sfx")
 	update_icon()
 
 func _pressed():
