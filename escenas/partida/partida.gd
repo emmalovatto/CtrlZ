@@ -10,8 +10,16 @@ var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
 var nafta_max = 100
 var nafta = nafta_max
 
+var cliente_escena = preload("res://escenas/partida/personas/cliente.tscn")
+var cliente_actual = null
+var veredas = [
+	250,
+	900
+]
+
 var escenas_obstaculos = [
 	preload("res://escenas/partida/obstaculos/auto_obstaculo.tscn"),
+	preload("res://escenas/partida/obstaculos/barrera_obstaculo.tscn")
 ]
 var altura_chunk:float = 648.0
 var limite_izq = 376
@@ -64,6 +72,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pausar"):
 		get_tree().paused = true
 		$pausa.visible = true
+	
+	if event.is_action_pressed("iniciar_minijuego"):
+		if cliente_actual != null:
+			abrir_minijuego()
 
 func tiempo_rand():
 	$timer_obstaculos.wait_time = randf_range(1, 2.5)
@@ -79,21 +91,38 @@ func _on_agarrar_nafta():
 
 func _on_timer_obstaculos_timeout() -> void:
 	var objeto 
+	var random = randf()
 	
-	if randf() < 0.2:
+	if random < 0.2:
+		objeto = cliente_escena.instantiate()
+		
+		objeto.position = Vector2(
+			veredas.pick_random(),
+			-100
+		)
+		$clientes.add_child(objeto)
+		objeto.cliente_cerca.connect(_on_cliente_cerca)
+		objeto.cliente_lejos.connect(_on_cliente_lejos)
+		
+	elif random < 0.4:
 		objeto = nafta_escena.instantiate()
+		
+		objeto.position = Vector2(
+			carriles.pick_random(),
+			-100
+		)
+		$obstaculos.add_child(objeto)
 		objeto.agarrar_nafta.connect(_on_agarrar_nafta)
 	else:
 		objeto = escenas_obstaculos.pick_random().instantiate()
-		objeto.choque_jugador.connect(_on_choque_jugador)
 		
-	objeto.position = Vector2(
-		carriles.pick_random(),
-		-100
-	)
-	$obstaculos.add_child(objeto)
+		objeto.position = Vector2(
+			carriles.pick_random(),
+			-100
+		)
+		$obstaculos.add_child(objeto)
+		objeto.choque_jugador.connect(_on_choque_jugador)
 	
-
 func _on_timer_nafta_timeout() -> void:
 	nafta -= 2
 	if nafta < 0:
@@ -101,4 +130,14 @@ func _on_timer_nafta_timeout() -> void:
 		$perder.visible = true
 		get_tree().paused = true
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
+	
+func _on_cliente_cerca(cliente):
+	cliente_actual = cliente
+
+func _on_cliente_lejos():
+	cliente_actual = null
+	
+func abrir_minijuego():
+	get_tree().paused = true
+	$pausa.visible = true
 	

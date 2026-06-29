@@ -96,5 +96,7 @@ visible = false
 [node name="timer_nafta" type="Timer" parent="." unique_id=1101365041]
 autostart = true
 
+[node name="clientes" type="Node2D" parent="." unique_id=919174721]
+
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_nafta" to="." method="_on_timer_nafta_timeout"]
