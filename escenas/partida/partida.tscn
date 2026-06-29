@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://0va476kvhxln" path="res://sprites/camion_arriba.png" id="5_kaohx"]
 [ext_resource type="AudioStream" uid="uid://fb31o0kooa0r" path="res://audio/efectos_sonido/esquivar_obstaculos.wav" id="7_66wp1"]
 [ext_resource type="PackedScene" uid="uid://crqlwhl5y3uvf" path="res://escenas/partida/gameover.tscn" id="8_0qvgj"]
+[ext_resource type="AudioStream" uid="uid://lc6qf5rhtah" path="res://audio/efectos_sonido/frenar.wav" id="10_i45l1"]
+[ext_resource type="AudioStream" uid="uid://4w1dyoijjolt" path="res://audio/efectos_sonido/choque.wav" id="11_fjqya"]
+[ext_resource type="AudioStream" uid="uid://b60pr6y0gkjcs" path="res://audio/efectos_sonido/game-over.wav" id="12_tkxrp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qvgj"]
 bg_color = Color(0.07058824, 0.078431375, 0.16078432, 0.47058824)
@@ -97,6 +100,19 @@ visible = false
 autostart = true
 
 [node name="clientes" type="Node2D" parent="." unique_id=919174721]
+
+[node name="SonidoFrenar" type="AudioStreamPlayer" parent="." unique_id=88153740]
+stream = ExtResource("10_i45l1")
+bus = &"Sfx"
+
+[node name="SonidoChoque" type="AudioStreamPlayer" parent="." unique_id=768663765]
+stream = ExtResource("11_fjqya")
+bus = &"Sfx"
+
+[node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=1299497839]
+process_mode = 3
+stream = ExtResource("12_tkxrp")
+bus = &"Music"
 
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_nafta" to="." method="_on_timer_nafta_timeout"]

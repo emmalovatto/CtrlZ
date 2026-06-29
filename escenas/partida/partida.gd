@@ -5,6 +5,9 @@ extends Node2D
 @onready var chunk2 = $chunk2
 @onready var camion = $camion
 @onready var musica_juego = $MusicaJuego
+@onready var game_over = $SonidoGameOver
+@onready var sonido_choque = $SonidoChoque
+@onready var frenar = $SonidoFrenar
 
 var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
 var nafta_max = 100
@@ -81,6 +84,10 @@ func tiempo_rand():
 	$timer_obstaculos.wait_time = randf_range(1, 2.5)
 
 func _on_choque_jugador():
+	musica_juego.stop()
+	sonido_choque.play()
+	game_over.play()
+	
 	$perder.visible = true
 	get_tree().paused = true
 	

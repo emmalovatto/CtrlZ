@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://ci4f2fx44guic" path="res://escenas/menu_ajustes/sfx.gd" id="4_rgvl7"]
 [ext_resource type="Texture2D" uid="uid://clxpats46v4f6" path="res://sprites/sonido.png" id="5_7mg1y"]
 [ext_resource type="Texture2D" uid="uid://b60c75d10nnce" path="res://sprites/silencio (1).png" id="6_wrhoh"]
-[ext_resource type="Texture2D" uid="uid://bpno7olpjk75b" path="res://sprites/musical-note-emoji-Photoroom.png" id="8_ar5n2"]
+[ext_resource type="Texture2D" uid="uid://b4f8ogxxrgf3k" path="res://sprites/musica.png" id="8_rgvl7"]
 [ext_resource type="Texture2D" uid="uid://cbj3w50yjw2vi" path="res://sprites/Diseño sin título (1) (1).png" id="9_jo5ox"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=17875323]
@@ -89,7 +89,7 @@ layout_mode = 2
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("4_b2rvp")
-sonido = ExtResource("8_ar5n2")
+sonido = ExtResource("8_rgvl7")
 silencio = ExtResource("9_jo5ox")
 
 [node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=576429632]
