@@ -85,8 +85,13 @@ func tiempo_rand():
 
 func _on_choque_jugador():
 	musica_juego.stop()
-	sonido_choque.play()
-	game_over.play()
+	#sonido_choque.play()
+	
+	#await sonido_choque.finished
+	
+	#game_over.play()
+	
+	camion.set_physics_process(false)
 	
 	$perder.visible = true
 	get_tree().paused = true
@@ -131,28 +136,30 @@ func _on_timer_obstaculos_timeout() -> void:
 		objeto.choque_jugador.connect(_on_choque_jugador)
 	
 func _on_timer_nafta_timeout() -> void:
-    if sonido_freno.playing or $perder.visible:
-		return return -= 2
-
+	#if frenar.playing or $perder.visible:
+		#return 
+	nafta -= 2
 	if nafta < 0:
 		nafta = 0
 		$perder.visible = true
 		get_tree().paused = true
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 
-    musica_juego.stop()
-	$timer_obstaculos.stop()
-	$timer_nafta.stop()
-	velocidad = 0
-	camion.set_physics_process(false)
+	#musica_juego.stop()
+	#$timer_obstaculos.stop()
+	#$timer_nafta.stop()
+	#velocidad = 0
+	#camion.set_physics_process(false)
 
-    sonido_freno.play()
-    await sonido_freno.finished
+	#frenar.play()
+	#await frenar.finished
 
-    game_over.play()
-	$perder.visible = true
-	get_tree().paused = true
-	return 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
+	#game_over.play()
+	#$perder.visible = true
+	#get_tree().paused = true
+	#return 	
+	
+	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 
 func _on_cliente_cerca(cliente):
 	cliente_actual = cliente
