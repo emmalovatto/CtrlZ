@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bl2tys676wrcg"]
+
+[ext_resource type="Script" uid="uid://1cajew3k0xxk" path="res://escenas/partida/minijuegos/minijuego_espacio.gd" id="1_d6v5r"]
+[ext_resource type="Theme" uid="uid://wklbloss7rqx" path="res://resources/menu.tres" id="2_fpfah"]
+
+[node name="minijuego_espacio" type="Control" unique_id=1633484395]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d6v5r")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=496494601]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=432455654]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1926683350]
+layout_mode = 2
+alignment = 1
+
+[node name="cuenta_regresiva" type="Label" parent="PanelContainer/VBoxContainer" unique_id=847018719]
+layout_mode = 2
+theme = ExtResource("2_fpfah")
+theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=865088548]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="instrucciones" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1703325715]
+layout_mode = 2
+theme = ExtResource("2_fpfah")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="minijuego" type="Control" parent="PanelContainer" unique_id=1908682714]
+layout_mode = 2
+
+[node name="cant_veces" type="Label" parent="PanelContainer/minijuego" unique_id=716844976]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_fpfah")
+theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
+
+[node name="tiempo_rest" type="Label" parent="PanelContainer/minijuego" unique_id=979586177]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("2_fpfah")
+theme_override_font_sizes/font_size = 25
