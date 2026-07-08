@@ -12,17 +12,22 @@ extends Node2D
 var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
 var nafta_max = 100
 var nafta = nafta_max
+var monedas = 0
 
 var cliente_escena = preload("res://escenas/partida/personas/cliente.tscn")
 var cliente_actual = null
 var veredas = [
-	250,
-	900
+	280,
+	870
 ]
 
 var escenas_obstaculos = [
 	preload("res://escenas/partida/obstaculos/auto_obstaculo.tscn"),
 	preload("res://escenas/partida/obstaculos/barrera_obstaculo.tscn")
+]
+
+var escenas_minijuegos = [
+	preload("res://escenas/partida/minijuegos/minijuego_espacio.tscn")
 ]
 var altura_chunk:float = 648.0
 var limite_izq = 376
@@ -41,6 +46,8 @@ func _ready() -> void:
 	
 	musica_juego.play()
 	musica_juego.position.x = -1000
+	
+	$CanvasLayer/monedas_texto.text = str(monedas)
 	
 	$CanvasLayer/HBoxContainer/barra_nafta.max_value = nafta_max
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
@@ -102,39 +109,41 @@ func _on_agarrar_nafta():
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 
 func _on_timer_obstaculos_timeout() -> void:
-	var objeto 
-	var random = randf()
+	var objeto = escenas_obstaculos.pick_random().instantiate()	
+	objeto.position = Vector2(
+		carriles.pick_random(),
+		-100
+	)
+	$obstaculos.add_child(objeto)
+	objeto.choque_jugador.connect(_on_choque_jugador)
+	$timer_obstaculos.wait_time = randf_range(0.8, 2)
+
+func _on_timer_clientes_timeout() -> void:
+
+	var objeto = cliente_escena.instantiate()
+	objeto.position = Vector2(
+		veredas.pick_random(),
+		-100
+	)
+	if objeto.position.x == 870:
+		objeto.rotation_degrees = 180
+	$clientes.add_child(objeto)
 	
-	if random < 0.2:
-		objeto = cliente_escena.instantiate()
-		
-		objeto.position = Vector2(
-			veredas.pick_random(),
-			-100
-		)
-		$clientes.add_child(objeto)
-		objeto.cliente_cerca.connect(_on_cliente_cerca)
-		objeto.cliente_lejos.connect(_on_cliente_lejos)
-		
-	elif random < 0.4:
-		objeto = nafta_escena.instantiate()
-		
-		objeto.position = Vector2(
-			carriles.pick_random(),
-			-100
-		)
-		$obstaculos.add_child(objeto)
-		objeto.agarrar_nafta.connect(_on_agarrar_nafta)
-	else:
-		objeto = escenas_obstaculos.pick_random().instantiate()
-		
-		objeto.position = Vector2(
-			carriles.pick_random(),
-			-100
-		)
-		$obstaculos.add_child(objeto)
-		objeto.choque_jugador.connect(_on_choque_jugador)
+	objeto.cliente_cerca.connect(_on_cliente_cerca)
+	objeto.cliente_lejos.connect(_on_cliente_lejos)
+	$timer_clientes.wait_time = randf_range(5.0, 12.0)
+
+func _on_timer_nafta_spawn_timeout() -> void:
+	var objeto = nafta_escena.instantiate()
 	
+	objeto.position = Vector2(
+		carriles.pick_random(),
+		-100
+	)
+	$obstaculos.add_child(objeto)
+	objeto.agarrar_nafta.connect(_on_agarrar_nafta)
+	$timer_nafta_spawn.wait_time = randf_range(8.0, 12.0)
+
 func _on_timer_nafta_timeout() -> void:
 	#if frenar.playing or $perder.visible:
 		#return 
@@ -168,6 +177,17 @@ func _on_cliente_lejos():
 	cliente_actual = null
 	
 func abrir_minijuego():
+	var minijuego = escenas_minijuegos.pick_random().instantiate()
+	$minijuego.add_child(minijuego)
+	minijuego.ganado.connect(_on_ganado)
+	minijuego.perdido.connect(_on_perdido)
 	get_tree().paused = true
-	$pausa.visible = true
+	minijuego.visible = true
 	
+func _on_ganado():
+	monedas += 1
+	$CanvasLayer/monedas_texto.text = str(monedas)
+	get_tree().paused = false
+	
+func _on_perdido():
+	get_tree().paused = false

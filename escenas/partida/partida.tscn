@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b407hi5frta5n" path="res://escenas/partida/partida.gd" id="1_tbcb8"]
 [ext_resource type="PackedScene" uid="uid://boft788uhsepp" path="res://escenas/partida/chunk_mapa.tscn" id="2_3f4ib"]
 [ext_resource type="Texture2D" uid="uid://b0tkasiwu2go2" path="res://sprites/nafta.png" id="2_4ii8i"]
+[ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="3_fjqya"]
 [ext_resource type="PackedScene" uid="uid://sgjthjqglq8e" path="res://escenas/menu_principal/pausa.tscn" id="3_kaohx"]
 [ext_resource type="AudioStream" uid="uid://dcvj67jkvpsm1" path="res://audio/musica/MusicaJuego.wav" id="4_3f4ib"]
 [ext_resource type="Script" uid="uid://fv8fb0qwfibb" path="res://escenas/partida/camion.gd" id="5_ccpoe"]
@@ -41,7 +42,7 @@ script = ExtResource("1_tbcb8")
 custom_minimum_size = Vector2(0, 15)
 offset_left = 10.0
 offset_top = 12.0
-offset_right = 185.0
+offset_right = 214.0
 offset_bottom = 42.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -62,6 +63,19 @@ theme_override_styles/background = SubResource("StyleBoxFlat_0qvgj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4ii8i")
 step = 1.0
 show_percentage = false
+
+[node name="monedas_texto" type="Label" parent="CanvasLayer" unique_id=569429070]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -20.0
+offset_top = 12.0
+offset_right = -10.0
+offset_bottom = 61.0
+grow_horizontal = 0
+theme = ExtResource("3_fjqya")
+text = "1
+"
 
 [node name="chunk1" parent="." unique_id=588724200 instance=ExtResource("2_3f4ib")]
 
@@ -91,15 +105,25 @@ stream = ExtResource("7_66wp1")
 [node name="timer_obstaculos" type="Timer" parent="." unique_id=1796095413]
 autostart = true
 
-[node name="obstaculos" type="Node2D" parent="." unique_id=955666452]
+[node name="timer_clientes" type="Timer" parent="." unique_id=508619883]
+wait_time = 8.0
+autostart = true
 
-[node name="perder" parent="." unique_id=59068047 instance=ExtResource("8_0qvgj")]
-visible = false
+[node name="timer_nafta_spawn" type="Timer" parent="." unique_id=1017419721]
+wait_time = 12.0
+autostart = true
 
 [node name="timer_nafta" type="Timer" parent="." unique_id=1101365041]
 autostart = true
 
+[node name="perder" parent="." unique_id=59068047 instance=ExtResource("8_0qvgj")]
+visible = false
+
+[node name="obstaculos" type="Node2D" parent="." unique_id=955666452]
+
 [node name="clientes" type="Node2D" parent="." unique_id=919174721]
+
+[node name="minijuego" type="CanvasLayer" parent="." unique_id=314205732]
 
 [node name="SonidoFrenar" type="AudioStreamPlayer" parent="." unique_id=88153740]
 stream = ExtResource("10_i45l1")
@@ -115,4 +139,6 @@ stream = ExtResource("12_tkxrp")
 bus = &"Music"
 
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
+[connection signal="timeout" from="timer_clientes" to="." method="_on_timer_clientes_timeout"]
+[connection signal="timeout" from="timer_nafta_spawn" to="." method="_on_timer_nafta_spawn_timeout"]
 [connection signal="timeout" from="timer_nafta" to="." method="_on_timer_nafta_timeout"]
