@@ -72,13 +72,29 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if !juego_activo:
 		return
-	
-	if event.is_action_pressed("minijuego_espacio"):
+		
+	juego_activo = false
+	var tween = create_tween()
+	tween.tween_property(
+		helado,
+		"position:y",
+		266,
+		0.3
+	)
+	await tween.finished
+	await get_tree().create_timer(0.5).timeout
+
+	if event.is_action_pressed("minijuego_espacio"):		
 		if flecha.position.x >= principio_objetivo and flecha.position.x <= final_objetivo:
 			pasar_nivel()
 		else:
 			sacar_vidas()
-
+			
+	if cant_vidas > 0 and velocidad <= 700:
+			helado.position = Vector2(principio_barra, 220) 
+			flecha.position.x = principio_barra
+			juego_activo = true
+			
 func pasar_nivel():
 	velocidad += 200
 	
