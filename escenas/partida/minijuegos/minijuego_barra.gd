@@ -3,13 +3,22 @@ extends Control
 @onready var cuenta = $PanelContainer/VBoxContainer/cuenta_regresiva
 @onready var instrucciones = $PanelContainer/VBoxContainer/instrucciones
 @onready var minijuego = $PanelContainer/minijuego
-@onready var cant_veces = $PanelContainer/minijuego/cant_veces
-@onready var tiempo_rest = $PanelContainer/minijuego/tiempo_rest
+@onready var barra = $PanelContainer/minijuego/barra
+@onready var flecha = $PanelContainer/minijuego/flecha
+@onready var helado = $PanelContainer/minijuego/helado
+@onready var vida1 = $PanelContainer/minijuego/vidas/vida1
+@onready var vida2 = $PanelContainer/minijuego/vidas/vida2
+@onready var vida3 = $PanelContainer/minijuego/vidas/vida3
 @onready var resultado = $PanelContainer/resultado
 @onready var mensaje = $PanelContainer/resultado/mensaje
 
-var cant_restante = 20
-var tiempo_restante = 5
+var cant_vidas = 3
+var velocidad = 300
+var direccion = 1
+var principio_barra = 332.0
+var final_barra = 822.0
+var principio_objetivo = 557.5
+var final_objetivo = 597.5
 var juego_activo = false
 
 signal ganado
@@ -23,7 +32,7 @@ func iniciar_cuenta() -> void:
 	instrucciones.visible = true
 	minijuego.visible = false
 	
-	instrucciones.text = "Presione ESPACIO 20 veces antes que termine el tiempo"
+	instrucciones.text = "Presione ESPACIO cuando el helado se encuentre en la posición correcta"
 	cuenta.text = "3"
 	await get_tree().create_timer(1.0).timeout
 	cuenta.text = "2"
@@ -39,10 +48,8 @@ func iniciar_cuenta() -> void:
 	
 func iniciar_juego() -> void:
 	minijuego.visible = true
-	
-	cant_veces.text = str(cant_restante)
-	tiempo_rest.text = str(int(tiempo_restante))
-	
+	flecha.position.x = principio_barra
+	helado.position.x = principio_barra
 	juego_activo = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,24 +57,44 @@ func _process(delta: float) -> void:
 	if !juego_activo:
 		return
 	
-	tiempo_restante -= delta
-	tiempo_rest.text = str(ceil(tiempo_restante))
+	flecha.position.x += velocidad * direccion * delta
+
+	if flecha.position.x >= final_barra:
+		flecha.position.x = final_barra
+		direccion = -1
+
+	elif flecha.position.x <= principio_barra:
+		flecha.position.x = principio_barra
+		direccion = 1
 	
-	if tiempo_restante <= 0:
-		juego_activo = false
-		perder()
+	helado.position.x = flecha.position.x
 
 func _input(event: InputEvent) -> void:
 	if !juego_activo:
 		return
 	
 	if event.is_action_pressed("minijuego_espacio"):
-		cant_restante -= 1
-		cant_veces.text = str(cant_restante)
-		
-		if cant_restante <= 0:
-			juego_activo = false
-			ganar()
+		if flecha.position.x >= principio_objetivo and flecha.position.x <= final_objetivo:
+			pasar_nivel()
+		else:
+			sacar_vidas()
+
+func pasar_nivel():
+	velocidad += 200
+	
+	if velocidad > 700:
+		ganar()
+
+func sacar_vidas():
+	cant_vidas -= 1
+	
+	if cant_vidas == 2:
+		vida1.visible = false
+	elif cant_vidas == 1:
+		vida2.visible = false
+	elif cant_vidas == 0:
+		vida3.visible = false
+		perder()
 
 func perder() -> void:
 	minijuego.visible = false

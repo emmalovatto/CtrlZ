@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://4spgjwunntc7"]
+
+[ext_resource type="Script" uid="uid://bhjno7qdmmwrk" path="res://escenas/partida/minijuegos/minijuego_barra.gd" id="1_pmgxy"]
+[ext_resource type="Theme" uid="uid://wklbloss7rqx" path="res://resources/menu.tres" id="2_v0k21"]
+[ext_resource type="Texture2D" uid="uid://cx8f27eps02s6" path="res://sprites/helado.png" id="3_yj4hm"]
+[ext_resource type="Texture2D" uid="uid://bcdv7tpqgf70d" path="res://sprites/cono.png" id="4_yj4hm"]
+[ext_resource type="Texture2D" uid="uid://cgx3ee82kk3rs" path="res://sprites/bocha.png" id="5_ni04g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni04g"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.3529412, 0.7137255, 1)
+
+[node name="MinijuegoBarra" type="Control" unique_id=106953603]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pmgxy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1295169072]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1878832126]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1513136656]
+layout_mode = 2
+alignment = 1
+
+[node name="cuenta_regresiva" type="Label" parent="PanelContainer/VBoxContainer" unique_id=862003410]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_v0k21")
+theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=565668513]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="instrucciones" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1985537028]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_v0k21")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="minijuego" type="Control" parent="PanelContainer" unique_id=273751728]
+layout_mode = 2
+
+[node name="vidas" type="HBoxContainer" parent="PanelContainer/minijuego" unique_id=2013094174]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 80.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="vida1" type="TextureRect" parent="PanelContainer/minijuego/vidas" unique_id=1148480025]
+layout_mode = 2
+texture = ExtResource("3_yj4hm")
+expand_mode = 3
+
+[node name="vida2" type="TextureRect" parent="PanelContainer/minijuego/vidas" unique_id=1114180523]
+layout_mode = 2
+texture = ExtResource("3_yj4hm")
+expand_mode = 3
+
+[node name="vida3" type="TextureRect" parent="PanelContainer/minijuego/vidas" unique_id=26581334]
+layout_mode = 2
+texture = ExtResource("3_yj4hm")
+expand_mode = 3
+
+[node name="barra" type="Panel" parent="PanelContainer/minijuego" unique_id=955790631]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -118.0
+offset_right = 250.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ni04g")
+
+[node name="objetivo" type="ColorRect" parent="PanelContainer/minijuego/barra" unique_id=1326555451]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -15.0
+offset_right = 20.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.3529412, 0.7137255, 1)
+
+[node name="helado" type="Sprite2D" parent="PanelContainer/minijuego" unique_id=1903304423]
+position = Vector2(577.50006, 220)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("5_ni04g")
+
+[node name="flecha" type="Sprite2D" parent="PanelContainer/minijuego" unique_id=1121876949]
+position = Vector2(577.5, 600)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_yj4hm")
+
+[node name="cono" type="Sprite2D" parent="PanelContainer/minijuego" unique_id=67084319]
+position = Vector2(577.5, 386)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_yj4hm")
+
+[node name="resultado" type="Control" parent="PanelContainer" unique_id=1421523037]
+visible = false
+layout_mode = 2
+
+[node name="mensaje" type="Label" parent="PanelContainer/resultado" unique_id=942000821]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_v0k21")
+theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
+horizontal_alignment = 1
+vertical_alignment = 1

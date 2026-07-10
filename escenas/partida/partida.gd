@@ -27,7 +27,8 @@ var escenas_obstaculos = [
 ]
 
 var escenas_minijuegos = [
-	preload("res://escenas/partida/minijuegos/minijuego_espacio.tscn")
+	preload("res://escenas/partida/minijuegos/minijuego_espacio.tscn"),
+	preload("res://escenas/partida/minijuegos/minijuego_barra.tscn")
 ]
 var altura_chunk:float = 648.0
 var limite_izq = 376
@@ -119,7 +120,6 @@ func _on_timer_obstaculos_timeout() -> void:
 	$timer_obstaculos.wait_time = randf_range(0.8, 2)
 
 func _on_timer_clientes_timeout() -> void:
-
 	var objeto = cliente_escena.instantiate()
 	objeto.position = Vector2(
 		veredas.pick_random(),
