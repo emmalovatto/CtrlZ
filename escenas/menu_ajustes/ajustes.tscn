@@ -6,10 +6,10 @@
 [ext_resource type="Script" uid="uid://dy61p6sry0jox" path="res://escenas/menu_ajustes/music.gd" id="4_b2rvp"]
 [ext_resource type="AudioStream" uid="uid://dmuov3h5mm3rd" path="res://audio/efectos_sonido/sfx_2.wav" id="4_qaulv"]
 [ext_resource type="Script" uid="uid://ci4f2fx44guic" path="res://escenas/menu_ajustes/sfx.gd" id="4_rgvl7"]
-[ext_resource type="Texture2D" uid="uid://clxpats46v4f6" path="res://sprites/sonido.png" id="5_7mg1y"]
-[ext_resource type="Texture2D" uid="uid://b60c75d10nnce" path="res://sprites/silencio (1).png" id="6_wrhoh"]
-[ext_resource type="Texture2D" uid="uid://b4f8ogxxrgf3k" path="res://sprites/musica.png" id="8_rgvl7"]
-[ext_resource type="Texture2D" uid="uid://cbj3w50yjw2vi" path="res://sprites/Diseño sin título (1) (1).png" id="9_jo5ox"]
+[ext_resource type="Texture2D" uid="uid://r34bxqsae8un" path="res://sprites/hgdtghetheth (1) (1).png" id="5_rgvl7"]
+[ext_resource type="Texture2D" uid="uid://cuph2tdh07tyh" path="res://sprites/hgdtghetheth (3) (1).png" id="6_7mg1y"]
+[ext_resource type="Texture2D" uid="uid://c60dxxwluebi2" path="res://sprites/Untitled design-Photoroom.png" id="8_wrhoh"]
+[ext_resource type="Texture2D" uid="uid://b7f5hvkxhbrgs" path="res://sprites/Untitled design (1)-Photoroom.png" id="9_ar5n2"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=17875323]
 script = ExtResource("1_rqc2v")
@@ -66,31 +66,46 @@ size_flags_vertical = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1150399378]
 layout_mode = 2
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 30
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=559461629]
-custom_minimum_size = Vector2(6, 9)
+custom_minimum_size = Vector2(6, 5)
 layout_mode = 2
-theme_override_constants/separation = 172
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="Sfx" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=151354325]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+button_mask = 7
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("4_rgvl7")
-sonido = ExtResource("5_7mg1y")
-silencio = ExtResource("6_wrhoh")
+sonido = ExtResource("5_rgvl7")
+silencio = ExtResource("6_7mg1y")
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=617134935]
+custom_minimum_size = Vector2(6, 5)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "Sonidos"
 
 [node name="Music" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1844957986]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+button_mask = 7
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("4_b2rvp")
-sonido = ExtResource("8_rgvl7")
-silencio = ExtResource("9_jo5ox")
+sonido = ExtResource("8_wrhoh")
+silencio = ExtResource("9_ar5n2")
+
+[node name="Label2" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1080118255]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 22
+text = "Musica"
 
 [node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=576429632]
 layout_mode = 2
@@ -121,6 +136,8 @@ text = "GUARDAR"
 stream = ExtResource("4_qaulv")
 bus = &"Sfx"
 
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer2/Sfx" to="." method="_on_sfx_mouse_entered"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer2/Music" to="." method="_on_music_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_button_up"]
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/guardar" to="." method="_on_guardar_button_up"]

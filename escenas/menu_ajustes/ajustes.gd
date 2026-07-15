@@ -30,3 +30,11 @@ func _on_cancelar_mouse_entered() -> void:
 
 func _on_guardar_mouse_entered() -> void:
 	sonido_boton.play()
+
+
+func _on_sfx_mouse_entered() -> void:
+	sonido_boton.play()
+
+
+func _on_music_mouse_entered() -> void:
+	sonido_boton.play()
