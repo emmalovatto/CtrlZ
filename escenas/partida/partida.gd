@@ -28,7 +28,8 @@ var escenas_obstaculos = [
 
 var escenas_minijuegos = [
 	preload("res://escenas/partida/minijuegos/minijuego_espacio.tscn"),
-	preload("res://escenas/partida/minijuegos/minijuego_barra.tscn")
+	preload("res://escenas/partida/minijuegos/minijuego_barra.tscn"),
+	preload("res://escenas/partida/minijuegos/minijuego_memotest.tscn")
 ]
 var altura_chunk:float = 648.0
 var limite_izq = 376

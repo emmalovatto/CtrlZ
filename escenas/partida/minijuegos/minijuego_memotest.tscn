@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://xuwl7w4gkhmn"]
+
+[ext_resource type="Script" uid="uid://dk5r8vb7j0cmm" path="res://escenas/partida/minijuegos/minijuego_memotest.gd" id="1_vd5cu"]
+[ext_resource type="Theme" uid="uid://wklbloss7rqx" path="res://resources/menu.tres" id="2_y2ib2"]
+[ext_resource type="Texture2D" uid="uid://cx8f27eps02s6" path="res://sprites/helado.png" id="3_y2ib2"]
+[ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="4_7kb6d"]
+
+[node name="MinijuegoMemotest" type="Control" unique_id=1187222978]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vd5cu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2040974925]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1158765469]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=252081632]
+process_mode = 3
+layout_mode = 2
+alignment = 1
+
+[node name="cuenta_regresiva" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1335591529]
+process_mode = 3
+visible = false
+layout_mode = 2
+theme = ExtResource("2_y2ib2")
+theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1409644217]
+process_mode = 3
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="instrucciones" type="Label" parent="PanelContainer/VBoxContainer" unique_id=137447141]
+process_mode = 3
+visible = false
+layout_mode = 2
+theme = ExtResource("2_y2ib2")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="minijuego" type="Control" parent="PanelContainer" unique_id=503181818]
+process_mode = 3
+layout_mode = 2
+
+[node name="vidas" type="HBoxContainer" parent="PanelContainer/minijuego" unique_id=910768792]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="vida1" type="TextureRect" parent="PanelContainer/minijuego/vidas" unique_id=1840814787]
+process_mode = 3
+layout_mode = 2
+texture = ExtResource("3_y2ib2")
+expand_mode = 3
+
+[node name="vida2" type="TextureRect" parent="PanelContainer/minijuego/vidas" unique_id=1502198969]
+process_mode = 3
+layout_mode = 2
+texture = ExtResource("3_y2ib2")
+expand_mode = 3
+
+[node name="vida3" type="TextureRect" parent="PanelContainer/minijuego/vidas" unique_id=45794235]
+process_mode = 3
+layout_mode = 2
+texture = ExtResource("3_y2ib2")
+expand_mode = 3
+
+[node name="tiempo" type="Label" parent="PanelContainer/minijuego" unique_id=2017651718]
+process_mode = 3
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 60.0
+offset_bottom = 51.0
+theme = ExtResource("4_7kb6d")
+theme_override_font_sizes/font_size = 20
+
+[node name="contenedor_tarjetas" type="GridContainer" parent="PanelContainer/minijuego" unique_id=1221560895]
+process_mode = 3
+custom_minimum_size = Vector2(360, 360)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -180.0
+offset_right = 160.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 4
+
+[node name="resultado" type="Control" parent="PanelContainer" unique_id=2073698040]
+process_mode = 3
+visible = false
+layout_mode = 2
+
+[node name="mensaje" type="Label" parent="PanelContainer/resultado" unique_id=1808922322]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -45.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_y2ib2")
+theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
