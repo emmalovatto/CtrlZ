@@ -7,6 +7,8 @@ extends Control
 @onready var tiempo_rest = $PanelContainer/minijuego/tiempo_rest
 @onready var resultado = $PanelContainer/resultado
 @onready var mensaje = $PanelContainer/resultado/mensaje
+@onready var game_counter = $GameCounter
+@onready var espacio = $SonidoEspacio
 
 var cant_restante = 20
 var tiempo_restante = 5
@@ -16,6 +18,7 @@ signal ganado
 signal perdido
 
 func _ready() -> void:
+	game_counter.play()
 	iniciar_cuenta()
 
 func iniciar_cuenta() -> void:
@@ -62,6 +65,7 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed("minijuego_espacio"):
+		espacio.play()
 		cant_restante -= 1
 		cant_veces.text = str(cant_restante)
 		

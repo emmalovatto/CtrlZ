@@ -8,6 +8,8 @@ extends Node2D
 @onready var game_over = $SonidoGameOver
 @onready var sonido_choque = $SonidoChoque
 @onready var frenar = $SonidoFrenar
+@onready var frenar_pedido = $FrenarPedido
+@onready var moneds = $Moneds
 
 var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
 var nafta_max = 100
@@ -86,6 +88,7 @@ func _input(event: InputEvent) -> void:
 		$pausa.visible = true
 	
 	if event.is_action_pressed("iniciar_minijuego"):
+		frenar_pedido.play()
 		if cliente_actual != null:
 			abrir_minijuego()
 
@@ -94,11 +97,11 @@ func tiempo_rand():
 
 func _on_choque_jugador():
 	musica_juego.stop()
-	#sonido_choque.play()
+	sonido_choque.play()
 	
-	#await sonido_choque.finished
+	await sonido_choque.finished
 	
-	#game_over.play()
+	game_over.play()
 	
 	camion.set_physics_process(false)
 	
@@ -186,6 +189,7 @@ func abrir_minijuego():
 	minijuego.visible = true
 	
 func _on_ganado():
+	moneds.play()
 	monedas += 1
 	$CanvasLayer/monedas_texto.text = str(monedas)
 	get_tree().paused = false

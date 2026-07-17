@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://1cajew3k0xxk" path="res://escenas/partida/minijuegos/minijuego_espacio.gd" id="1_d6v5r"]
 [ext_resource type="Theme" uid="uid://wklbloss7rqx" path="res://resources/menu.tres" id="2_fpfah"]
+[ext_resource type="AudioStream" uid="uid://ugk1s758bjgc" path="res://audio/efectos_sonido/game_counter_mini_juegos.mp3" id="3_jj2s5"]
+[ext_resource type="AudioStream" uid="uid://16u1rv57s823" path="res://audio/efectos_sonido/boton_mini_juegos.mp3" id="4_iig0o"]
 
 [node name="minijuego_espacio" type="Control" unique_id=1633484395]
 process_mode = 3
@@ -96,3 +98,9 @@ theme = ExtResource("2_fpfah")
 theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GameCounter" type="AudioStreamPlayer" parent="." unique_id=60323733]
+stream = ExtResource("3_jj2s5")
+
+[node name="SonidoEspacio" type="AudioStreamPlayer" parent="." unique_id=57315139]
+stream = ExtResource("4_iig0o")

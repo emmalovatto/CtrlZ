@@ -13,6 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://lc6qf5rhtah" path="res://audio/efectos_sonido/frenar.wav" id="10_i45l1"]
 [ext_resource type="AudioStream" uid="uid://4w1dyoijjolt" path="res://audio/efectos_sonido/choque.wav" id="11_fjqya"]
 [ext_resource type="AudioStream" uid="uid://b60pr6y0gkjcs" path="res://audio/efectos_sonido/game-over.wav" id="12_tkxrp"]
+[ext_resource type="AudioStream" uid="uid://xlev1subr8jn" path="res://audio/efectos_sonido/frenar_pedido.mp3" id="14_tkxrp"]
+[ext_resource type="AudioStream" uid="uid://cw7mqae4m71tf" path="res://audio/efectos_sonido/monedas.wav" id="15_pgpir"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qvgj"]
 bg_color = Color(0.07058824, 0.078431375, 0.16078432, 0.47058824)
@@ -137,6 +139,12 @@ bus = &"Sfx"
 process_mode = 3
 stream = ExtResource("12_tkxrp")
 bus = &"Music"
+
+[node name="FrenarPedido" type="AudioStreamPlayer" parent="." unique_id=1144250430]
+stream = ExtResource("14_tkxrp")
+
+[node name="Moneds" type="AudioStreamPlayer2D" parent="." unique_id=2022172224]
+stream = ExtResource("15_pgpir")
 
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_clientes" to="." method="_on_timer_clientes_timeout"]
