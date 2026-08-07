@@ -11,6 +11,8 @@ extends Control
 @onready var vida3 = $PanelContainer/minijuego/vidas/vida3
 @onready var resultado = $PanelContainer/resultado
 @onready var mensaje = $PanelContainer/resultado/mensaje
+@onready var game_counter = $GameCounter
+#@onready var boton_mini_juegos = 
 
 var cant_vidas = 3
 var velocidad = 300
@@ -25,6 +27,7 @@ signal ganado
 signal perdido
 
 func _ready() -> void:
+	game_counter.play()
 	iniciar_cuenta()
 
 func iniciar_cuenta() -> void:

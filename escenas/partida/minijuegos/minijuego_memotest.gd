@@ -10,6 +10,8 @@ extends Control
 @onready var vida1 = $PanelContainer/minijuego/vidas/vida1
 @onready var vida2 = $PanelContainer/minijuego/vidas/vida2
 @onready var vida3 = $PanelContainer/minijuego/vidas/vida3
+@onready var game_counter = $GameCounter
+@onready var sonido_helado = $SonidoMiniJueg
 
 var escena_tarjeta = preload("res://escenas/partida/minijuegos/assets/tarjeta_memo.tscn")
 
@@ -36,6 +38,7 @@ var imagenes = [
 ]
 
 func _ready() -> void:
+	game_counter.play()
 	iniciar_cuenta()
 
 func iniciar_cuenta() -> void:
@@ -110,6 +113,7 @@ func revelar_tarjetas():
 func _on_tarjeta_seleccionada(tarjeta):
 	if comprobando:
 		return
+	sonido_helado.play()
 	tarjetas_seleccionadas.append(tarjeta)
 	if tarjetas_seleccionadas.size() == 2:
 		verificar_cartas()

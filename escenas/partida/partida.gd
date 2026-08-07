@@ -86,9 +86,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pausar"):
 		get_tree().paused = true
 		$pausa.visible = true
+		
 	
 	if event.is_action_pressed("iniciar_minijuego"):
-		frenar_pedido.play()
+		#frenar_pedido.play()
 		if cliente_actual != null:
 			abrir_minijuego()
 
