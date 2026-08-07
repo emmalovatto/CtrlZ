@@ -89,7 +89,6 @@ func _input(event: InputEvent) -> void:
 		
 	
 	if event.is_action_pressed("iniciar_minijuego"):
-		#frenar_pedido.play()
 		if cliente_actual != null:
 			abrir_minijuego()
 
@@ -101,13 +100,9 @@ func _on_choque_jugador():
 	sonido_choque.play()
 	
 	await sonido_choque.finished
-	
 	game_over.play()
-	
 	camion.set_physics_process(false)
-	
-	$perder.visible = true
-	get_tree().paused = true
+	partida_terminada()
 	
 func _on_agarrar_nafta():
 	nafta += 10
@@ -150,29 +145,12 @@ func _on_timer_nafta_spawn_timeout() -> void:
 	$timer_nafta_spawn.wait_time = randf_range(8.0, 12.0)
 
 func _on_timer_nafta_timeout() -> void:
-	#if frenar.playing or $perder.visible:
-		#return 
 	nafta -= 2
 	if nafta < 0:
 		nafta = 0
 		$perder.visible = true
 		get_tree().paused = true
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
-
-	#musica_juego.stop()
-	#$timer_obstaculos.stop()
-	#$timer_nafta.stop()
-	#velocidad = 0
-	#camion.set_physics_process(false)
-
-	#frenar.play()
-	#await frenar.finished
-
-	#game_over.play()
-	#$perder.visible = true
-	#get_tree().paused = true
-	#return 	
-	
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 
 func _on_cliente_cerca(cliente):
@@ -197,3 +175,8 @@ func _on_ganado():
 	
 func _on_perdido():
 	get_tree().paused = false
+	
+func partida_terminada():
+	$perder.visible = true
+	get_tree().paused = true
+	
