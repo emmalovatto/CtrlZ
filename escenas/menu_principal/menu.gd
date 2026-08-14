@@ -10,15 +10,9 @@ extends Control
 @onready var sonido_transicion = $Motor
 @onready var musica_juego = $MusicaJuego
 
-
 func _ready() -> void:
 	$ConfirmarSalida.visible = false
-	#_on_musica_menu_finished()
 	musica_menu.play()
-	#musica_menu.position.x = 1000
-
-#func _on_musica_menu_finished() -> void:
-	#musica_menu.play()
 
 func _on_boton_jugar_button_up() -> void:
 	$menu_animacion.play("menu")
@@ -67,7 +61,7 @@ func transicion_audio() -> void:
 	
 func _on_menu_animacion_animation_finished(anim_name):
 	if anim_name == "menu":
-		get_tree().change_scene_to_file("res://escenas/partida/partida.tscn")
+		get_tree().change_scene_to_file("res://escenas/partida/usuario.tscn")
 
 func _on_boton_salir_button_up() -> void:
 	$ConfirmarSalida.visible = true

@@ -146,7 +146,11 @@ stream = ExtResource("14_tkxrp")
 [node name="Moneds" type="AudioStreamPlayer2D" parent="." unique_id=2022172224]
 stream = ExtResource("15_pgpir")
 
+[node name="timer_monedas" type="Timer" parent="." unique_id=2089367401]
+autostart = true
+
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_clientes" to="." method="_on_timer_clientes_timeout"]
 [connection signal="timeout" from="timer_nafta_spawn" to="." method="_on_timer_nafta_spawn_timeout"]
 [connection signal="timeout" from="timer_nafta" to="." method="_on_timer_nafta_timeout"]
+[connection signal="timeout" from="timer_monedas" to="." method="_on_timer_monedas_timeout"]

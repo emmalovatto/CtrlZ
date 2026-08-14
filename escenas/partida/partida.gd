@@ -148,8 +148,7 @@ func _on_timer_nafta_timeout() -> void:
 	nafta -= 2
 	if nafta < 0:
 		nafta = 0
-		$perder.visible = true
-		get_tree().paused = true
+		partida_terminada()
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 
@@ -169,7 +168,7 @@ func abrir_minijuego():
 	
 func _on_ganado():
 	moneds.play()
-	monedas += 1
+	monedas += 50
 	$CanvasLayer/monedas_texto.text = str(monedas)
 	get_tree().paused = false
 	
@@ -177,6 +176,10 @@ func _on_perdido():
 	get_tree().paused = false
 	
 func partida_terminada():
+	Puntuaciones.guardar_puntuacion(Puntuaciones.nombre_jugador, monedas)
 	$perder.visible = true
 	get_tree().paused = true
-	
+
+func _on_timer_monedas_timeout() -> void:
+	monedas += 2
+	$CanvasLayer/monedas_texto.text = str(monedas)
