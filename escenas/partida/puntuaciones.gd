@@ -1,5 +1,6 @@
-const RUTA = "user://puntuaciones.json"
+extends Node
 
+const RUTA = "user://puntuaciones.json"
 var nombre_jugador = ""
 
 func guardar_puntuacion(nombre: String, puntaje: int) -> void:
@@ -29,3 +30,12 @@ func cargar_puntuaciones() -> Array:
 		return datos
 
 	return []
+
+func obtener_mejores_puntuaciones() -> Array:
+	var puntuaciones = cargar_puntuaciones()
+
+	puntuaciones.sort_custom(func(a, b):
+		return a["puntaje"] > b["puntaje"]
+	)
+
+	return puntuaciones
