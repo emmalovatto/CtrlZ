@@ -12,6 +12,10 @@ extends Node2D
 @onready var moneds = $Moneds
 
 var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
+
+var dash_escena = preload("res://escenas/partida/obstaculos/dash.tscn")
+var en_dash = false
+
 var nafta_max = 100
 var nafta = nafta_max
 var monedas = 0
@@ -42,8 +46,10 @@ var carriles = [
 	736
 ]
 
+var timer_dash: Timer
+
 func _ready() -> void:
-	chunk1.position.y = 0
+	chunk1.position.y = 0.0
 	chunk2.position.y = -altura_chunk
 	camion.position.x = get_viewport_rect().size.x / 2
 	camion.position.y = get_viewport_rect().size.y - 120
@@ -58,6 +64,12 @@ func _ready() -> void:
 	
 	randomize()
 	tiempo_rand()
+	
+	timer_dash = Timer.new()
+	timer_dash.wait_time = 30.0 # Aparece un dash cada 15 segundos
+	timer_dash.autostart = true
+	timer_dash.timeout.connect(_on_timer_dash_timeout)
+	add_child(timer_dash)
 
 func _on_musica_juego_finished() -> void:
 	musica_juego.play()
@@ -108,6 +120,56 @@ func _on_agarrar_nafta():
 	nafta += 10
 	nafta = min(nafta, nafta_max)
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
+	
+func _on_timer_dash_timeout():
+	var superpuesto = false
+	
+	for obs in $obstaculos.get_children():
+		if obs.position.x == 576 and obs.position.y < 50:
+			superpuesto = true
+			break
+			
+	
+	
+	if not superpuesto:
+		var dash = dash_escena.instantiate()
+		dash.position = Vector2(576, -100) # 576 es el carril del medio exacto
+		if en_dash:
+			dash.velocidad *= 2
+		$obstaculos.add_child(dash)
+		dash.agarrar_dash.connect(_on_agarrar_dash)
+
+func _on_agarrar_dash():
+	if en_dash: return
+	en_dash = true
+	
+	velocidad *= 2
+	camion.velocidad *= 2
+	
+	
+	camion.get_node("CollisionShape2D").set_deferred("disabled", true)
+	
+	# Acelerar todos los objetos que ya están en la pantalla
+	for obs in $obstaculos.get_children():
+		if "velocidad" in obs: obs.velocidad *= 2
+	for cli in $clientes.get_children():
+		if "velocidad" in cli: cli.velocidad *= 2
+		
+	# El dash dura 3 segundos
+	await get_tree().create_timer(3.0).timeout
+	
+	# Volver a la normalidad
+	velocidad /= 2
+	camion.velocidad /= 2
+	camion.get_node("CollisionShape2D").set_deferred("disabled", false)
+	
+	# Desacelerar los objetos restantes
+	for obs in $obstaculos.get_children():
+		if "velocidad" in obs: obs.velocidad /= 2
+	for cli in $clientes.get_children():
+		if "velocidad" in cli: cli.velocidad /= 2
+		
+	en_dash = false
 
 func _on_timer_obstaculos_timeout() -> void:
 	var objeto = escenas_obstaculos.pick_random().instantiate()	
@@ -115,10 +177,15 @@ func _on_timer_obstaculos_timeout() -> void:
 		carriles.pick_random(),
 		-100
 	)
+	
+	if en_dash and "velocidad" in objeto:
+		objeto.velocidad *= 2
+	
 	$obstaculos.add_child(objeto)
 	objeto.choque_jugador.connect(_on_choque_jugador)
 	$timer_obstaculos.wait_time = randf_range(0.8, 2)
-
+	
+	
 func _on_timer_clientes_timeout() -> void:
 	var objeto = cliente_escena.instantiate()
 	objeto.position = Vector2(

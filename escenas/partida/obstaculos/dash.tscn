@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://stubw3tt3rqn"]
+
+[ext_resource type="Script" uid="uid://cau4tis4frji1" path="res://escenas/partida/obstaculos/dash.gd" id="1_ws6ga"]
+[ext_resource type="Texture2D" uid="uid://b612m02hmk5lq" path="res://sprites/wmremove-transformed (1).png" id="2_8rc4l"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_8rc4l"]
+
+[node name="Dash" type="Node2D" unique_id=1208490891]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=691886918]
+script = ExtResource("1_ws6ga")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1035239769]
+texture = ExtResource("2_8rc4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=478606337]
+position = Vector2(0, 7.6293945e-06)
+scale = Vector2(1.0000001, 1)
+shape = SubResource("ConvexPolygonShape2D_8rc4l")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
