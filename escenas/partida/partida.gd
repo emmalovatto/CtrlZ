@@ -70,7 +70,7 @@ func _ready() -> void:
 	
 	#dash
 	timer_dash = Timer.new()
-	timer_dash.wait_time = 10.0 # Aparece un dash cada 60 segundos
+	timer_dash.wait_time = 10.0
 	timer_dash.autostart = true
 	timer_dash.timeout.connect(_on_timer_dash_timeout)
 	add_child(timer_dash)
@@ -138,7 +138,7 @@ func _on_timer_dash_timeout():
 		var dash = dash_escena.instantiate()
 		dash.position = Vector2(576, -100)
 		if en_dash:
-			dash.velocidad *= 2
+			dash.velocidad *= 3.0
 		$obstaculos.add_child(dash)
 		dash.agarrar_dash.connect(_on_agarrar_dash)
 #
@@ -146,29 +146,29 @@ func _on_agarrar_dash():
 	if en_dash: return
 	en_dash = true
 	#
-	velocidad *= 2
-	camion.velocidad *= 2
+	velocidad *= 3.0
+	camion.velocidad *= 3.0
 	#
 	#
 	camion.get_node("CollisionShape2D").set_deferred("disabled", true)
 	#
 	## Acelerar todos los objetos que ya están en la pantalla
 	for obs in $obstaculos.get_children():
-		if "velocidad" in obs: obs.velocidad *= 2
+		if "velocidad" in obs: obs.velocidad *= 3.0
 	for client in $clientes.get_children():
-		if "velocidad" in client: client.velocidad *= 2
+		if "velocidad" in client: client.velocidad *= 3.0
 		#
 	## El dash dura 3 segundos
 	await get_tree().create_timer(3.0).timeout
 	
-	velocidad /= 2
-	camion.velocidad /= 2
+	velocidad /= 3.0
+	camion.velocidad /= 3.0
 	camion.get_node("CollisionShape2D").set_deferred("disabled", false)
 	#
 	for obs in $obstaculos.get_children():
-		if "velocidad" in obs: obs.velocidad /= 2
+		if "velocidad" in obs: obs.velocidad /= 3.0
 	for cli in $clientes.get_children():
-		if "velocidad" in cli: cli.velocidad /= 2
+		if "velocidad" in cli: cli.velocidad /= 3.0
 		#
 	en_dash = false
 
@@ -180,7 +180,7 @@ func _on_timer_obstaculos_timeout() -> void:
 	)
 	
 	if en_dash and "velocidad" in objeto:
-		objeto.velocidad *= 2
+		objeto.velocidad *= 3.0
 	
 	$obstaculos.add_child(objeto)
 	objeto.choque_jugador.connect(_on_choque_jugador)

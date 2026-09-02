@@ -3,21 +3,17 @@
 [ext_resource type="Script" uid="uid://cau4tis4frji1" path="res://escenas/partida/obstaculos/dash.gd" id="1_ws6ga"]
 [ext_resource type="Texture2D" uid="uid://ck3c2pyapb56m" path="res://sprites/dash.png" id="2_8rc4l"]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_8rc4l"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rc4l"]
+size = Vector2(56.36363, 108.18179)
 
-[node name="Dash" type="Node2D" unique_id=1208490891]
-
-[node name="Area2D" type="Area2D" parent="." unique_id=691886918]
+[node name="Dash" type="Area2D" unique_id=292243137]
+scale = Vector2(1.1, 1.1)
 script = ExtResource("1_ws6ga")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1035239769]
-position = Vector2(561.5, 561.5)
-scale = Vector2(8.486667, 8.486667)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1035239769]
 texture = ExtResource("2_8rc4l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=478606337]
-position = Vector2(0, 7.6293945e-06)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=478606337]
+position = Vector2(-15.454545, -3.181808)
 scale = Vector2(1.0000001, 1)
-shape = SubResource("ConvexPolygonShape2D_8rc4l")
-
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
+shape = SubResource("RectangleShape2D_8rc4l")
