@@ -12,6 +12,7 @@ extends Control
 @onready var resultado = $PanelContainer/resultado
 @onready var mensaje = $PanelContainer/resultado/mensaje
 @onready var game_counter = $GameCounter
+@onready var musica = $MusicaMiniJ
 #@onready var boton_mini_juegos = 
 
 var cant_vidas = 3
@@ -29,6 +30,10 @@ signal perdido
 func _ready() -> void:
 	game_counter.play()
 	iniciar_cuenta()
+	
+	musica.play()
+
+
 
 func iniciar_cuenta() -> void:
 	cuenta.visible = true
@@ -132,3 +137,7 @@ func ganar() -> void:
 	
 	ganado.emit()
 	queue_free()
+
+
+func _on_musica_mini_j_finished() -> void:
+	musica.play()

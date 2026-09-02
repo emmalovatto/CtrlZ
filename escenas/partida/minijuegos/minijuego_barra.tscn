@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcdv7tpqgf70d" path="res://sprites/cono.png" id="4_yj4hm"]
 [ext_resource type="Texture2D" uid="uid://cgx3ee82kk3rs" path="res://sprites/bocha.png" id="5_ni04g"]
 [ext_resource type="AudioStream" uid="uid://ugk1s758bjgc" path="res://audio/efectos_sonido/game_counter_mini_juegos.mp3" id="6_ni04g"]
+[ext_resource type="AudioStream" uid="uid://cwqrgwt5eahyh" path="res://audio/musica/Scoop-Rush.wav" id="7_tlm4u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni04g"]
 bg_color = Color(1, 1, 1, 1)
@@ -162,3 +163,10 @@ vertical_alignment = 1
 
 [node name="GameCounter" type="AudioStreamPlayer" parent="." unique_id=474703995]
 stream = ExtResource("6_ni04g")
+bus = &"Sfx"
+
+[node name="MusicaMiniJ" type="AudioStreamPlayer2D" parent="." unique_id=2074512014]
+stream = ExtResource("7_tlm4u")
+bus = &"Music"
+
+[connection signal="finished" from="MusicaMiniJ" to="." method="_on_musica_mini_j_finished"]

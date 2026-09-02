@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var velocidad = 300
+var velocidad = 300.0
 var limite_izq = 362
 var limite_der = 776
 

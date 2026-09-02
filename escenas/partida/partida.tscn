@@ -37,6 +37,7 @@ size = Vector2(146, 285)
 
 [node name="Partida" type="Node2D" unique_id=1258901090]
 script = ExtResource("1_tbcb8")
+velocidad = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1431030271]
 
@@ -149,6 +150,7 @@ stream = ExtResource("15_pgpir")
 [node name="timer_monedas" type="Timer" parent="." unique_id=2089367401]
 autostart = true
 
+[connection signal="finished" from="MusicaJuego" to="." method="_on_musica_juego_finished"]
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_clientes" to="." method="_on_timer_clientes_timeout"]
 [connection signal="timeout" from="timer_nafta_spawn" to="." method="_on_timer_nafta_spawn_timeout"]
