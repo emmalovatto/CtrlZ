@@ -143,40 +143,59 @@ func _on_timer_dash_timeout():
 		dash.agarrar_dash.connect(_on_agarrar_dash)
 #
 func _on_agarrar_dash():
-	if en_dash: return
+	if en_dash: 
+		return
 	en_dash = true
 
 	velocidad *= 3.0
-	camion.velocidad *= 3.0
+	
+	if camion.velocidad != null:
+		camion.velocidad *= 3.0
+	
 	#
-	#
-	camion.get_node("CollisionShape2D").set_deferred("disabled", true)
-	#
-	## Acelerar todos los objetos que ya están en la pantalla
+	if camion.get_node_or_null("CollisionShape2D"):
+		camion.get_node_or_null("CollisionShape2D").set_deferred("disabled", true)
+	
+	
+	# Acelerar todos los objetos que ya están en la pantalla
 	for obs in $obstaculos.get_children():
-		if obs.get("velocidad") != null:
+		var obstac = obs.get("velocidad")
+		if obstac != null and (obstac is int or obstac is float):
 			obs.velocidad *= 3.0
 	
-	for obs in $obstaculos.get_children():
-		if "velocidad" in obs: obs.velocidad *= 3.0
+	#for obs in $obstaculos.get_children():
+		#if "velocidad" in obs: obs.velocidad *= 3.0
 		
 	for client in $clientes.get_children():
-		if client.get("velocidad") != null:
+		var cl = client.get("velocidad")
+		if cl != null and (cl is int and cl is float):
 			client.velocidad *= 3.0
 		
-	for client in $clientes.get_children():
-		if "velocidad" in client: client.velocidad *= 3.0
+	#for client in $clientes.get_children():
+		#if "velocidad" in client: client.velocidad *= 3.0
 
 	await get_tree().create_timer(3.0).timeout
 	
 	velocidad /= 3.0
-	camion.velocidad /= 3.0
-	camion.get_node("CollisionShape2D").set_deferred("disabled", false)
+	
+	if camion.velocidad != null:
+		camion.velocidad /= 3.0
+	
+	if camion.get_node_or_null("CollisionShape2D"):
+		camion.get_node_or_null("CollisionShape2D").set_deferred("disabled", false)
 
 	for obs in $obstaculos.get_children():
-		if "velocidad" in obs: obs.velocidad /= 3.0
-	for cli in $clientes.get_children():
-		if "velocidad" in cli: cli.velocidad /= 3.0
+		var obstac = obs.get("velocidad")
+		
+		if obstac != null and (obstac is int or obstac is float):
+			obs.velocidad /= 3.0
+		#if "velocidad" in obs: obs.velocidad /= 3.0
+	for client in $clientes.get_children():
+		var cl = client.get("velocidad")
+		
+		if cl != null and (cl is int or cl is float):
+			client.velocidad /= 3.0
+		#if "velocidad" in cli: cli.velocidad /= 3.0
 
 	en_dash = false
 
@@ -187,11 +206,17 @@ func _on_timer_obstaculos_timeout() -> void:
 		-100
 	)
 	
-	if en_dash and objeto.get("velocidad") != null:
-		objeto.velocidad *= 3.0
+	if en_dash:
+		var ob = objeto.get("velocidad")
+		
+		if ob != null and (ob is int or ob is float):
+			objeto.velocidad *= 3.0
 	
-	if en_dash and "velocidad" in objeto:
-		objeto.velocidad *= 3.0
+	#if en_dash and objeto.get("velocidad") != null:
+		#objeto.velocidad *= 3.0
+	
+	#if en_dash and "velocidad" in objeto:
+		#objeto.velocidad *= 3.0
 	
 	$obstaculos.add_child(objeto)
 	objeto.choque_jugador.connect(_on_choque_jugador)
