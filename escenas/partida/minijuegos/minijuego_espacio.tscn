@@ -101,6 +101,8 @@ vertical_alignment = 1
 
 [node name="GameCounter" type="AudioStreamPlayer" parent="." unique_id=60323733]
 stream = ExtResource("3_jj2s5")
+bus = &"Sfx"
 
 [node name="SonidoEspacio" type="AudioStreamPlayer" parent="." unique_id=57315139]
 stream = ExtResource("4_iig0o")
+bus = &"Sfx"

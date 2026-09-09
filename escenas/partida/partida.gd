@@ -18,9 +18,9 @@ var dash_escena = preload("res://escenas/partida/obstaculos/dash.tscn")
 var en_dash = false
 #
 
-var nafta_max = 100
+var nafta_max = 100.0
 var nafta = nafta_max
-var monedas = 0
+var monedas = 0.0
 
 var cliente_escena = preload("res://escenas/partida/personas/cliente.tscn")
 var cliente_actual = null
@@ -54,8 +54,8 @@ var timer_dash: Timer
 func _ready() -> void:
 	chunk1.position.y = 0.0
 	chunk2.position.y = -altura_chunk
-	camion.position.x = get_viewport_rect().size.x / 2
-	camion.position.y = get_viewport_rect().size.y - 120
+	camion.position.x = get_viewport_rect().size.x / 2.0
+	camion.position.y = get_viewport_rect().size.y - 120.0
 	
 	musica_juego.play()
 	musica_juego.position.x = -1000
@@ -93,10 +93,10 @@ func _process(delta: float) -> void:
 	chunk2.position.y += velocidad * delta 
 	
 	if chunk1.position.y >= altura_chunk:
-		chunk1.position.y -= altura_chunk * 2
+		chunk1.position.y -= altura_chunk #* 2.0
 		
 	if chunk2.position.y >= altura_chunk:
-		chunk2.position.y -= altura_chunk * 2
+		chunk2.position.y -= altura_chunk #* 2.0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pausar"):
