@@ -149,6 +149,10 @@ stream = ExtResource("15_pgpir")
 [node name="timer_monedas" type="Timer" parent="." unique_id=2089367401]
 autostart = true
 
+[node name="Nafta" type="AudioStreamPlayer" parent="." unique_id=1557574749]
+
+[node name="NaftaBaja" type="AudioStreamPlayer" parent="." unique_id=1938382728]
+
 [connection signal="finished" from="MusicaJuego" to="." method="_on_musica_juego_finished"]
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_clientes" to="." method="_on_timer_clientes_timeout"]
