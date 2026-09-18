@@ -138,6 +138,7 @@ bus = &"Sfx"
 [node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=1299497839]
 process_mode = 3
 stream = ExtResource("12_tkxrp")
+volume_db = -10.692
 bus = &"Music"
 
 [node name="FrenarPedido" type="AudioStreamPlayer" parent="." unique_id=1144250430]

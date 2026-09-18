@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmpyfboco11lw"]
 
 [ext_resource type="Script" uid="uid://b5dgug0t2r5d7" path="res://escenas/partida/minijuegos/assets/tarjeta_memo.gd" id="1_kyhay"]
+[ext_resource type="Texture2D" uid="uid://dllvky2ka1aki" path="res://sprites/unnamed (3).png" id="2_lrpeq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kyhay"]
 bg_color = Color(0.8, 0.8, 0.8, 1)
@@ -25,8 +26,6 @@ corner_detail = 3
 [sub_resource type="Theme" id="Theme_748i2"]
 Panel/styles/panel = SubResource("StyleBoxFlat_lrpeq")
 
-[sub_resource type="ImageTexture" id="ImageTexture_kyhay"]
-
 [node name="Button" type="Button" unique_id=633269067]
 custom_minimum_size = Vector2(90, 120)
 offset_right = 8.0
@@ -47,6 +46,14 @@ offset_right = 90.0
 offset_bottom = 120.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kyhay")
+
+[node name="TextureRect" type="TextureRect" parent="atras/tarjeta2" unique_id=588288191]
+layout_mode = 0
+offset_left = -27.0
+offset_top = -42.0
+offset_right = 154.0
+offset_bottom = 131.0
+texture = ExtResource("2_lrpeq")
 
 [node name="contenido" type="Control" parent="." unique_id=1774544104]
 visible = false
@@ -78,5 +85,4 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("ImageTexture_kyhay")
 expand_mode = 3

@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="4_7kb6d"]
 [ext_resource type="AudioStream" uid="uid://ugk1s758bjgc" path="res://audio/efectos_sonido/game_counter_mini_juegos.mp3" id="5_x6i17"]
 [ext_resource type="AudioStream" uid="uid://16u1rv57s823" path="res://audio/efectos_sonido/boton_mini_juegos.mp3" id="6_nj2ts"]
+[ext_resource type="AudioStream" uid="uid://cwqrgwt5eahyh" path="res://audio/musica/Scoop-Rush.wav" id="7_6p8l6"]
 
 [node name="MinijuegoMemotest" type="Control" unique_id=1187222978]
 process_mode = 3
@@ -156,3 +157,10 @@ bus = &"Sfx"
 [node name="SonidoMiniJueg" type="AudioStreamPlayer" parent="." unique_id=15521199]
 stream = ExtResource("6_nj2ts")
 bus = &"Sfx"
+
+[node name="MusicMiniJuego" type="AudioStreamPlayer" parent="." unique_id=1950513107]
+stream = ExtResource("7_6p8l6")
+volume_db = -16.273
+bus = &"Music"
+
+[node name="CartaNoEncontrada" type="AudioStreamPlayer" parent="." unique_id=690877099]
