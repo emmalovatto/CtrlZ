@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var velocidad = 300
+@export var velocidad = 300.0
 
 signal choque_jugador
 

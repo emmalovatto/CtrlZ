@@ -10,6 +10,10 @@ extends Node2D
 @onready var frenar = $SonidoFrenar
 @onready var frenar_pedido = $FrenarPedido
 @onready var moneds = $Moneds
+@onready var sonido_nafta = $Nafta
+@onready var sonido_nafta_baja = $NaftaBaja
+
+var nafta_baja_reproducida = false
 
 var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
 
@@ -18,9 +22,9 @@ var dash_escena = preload("res://escenas/partida/obstaculos/dash.tscn")
 var en_dash = false
 #
 
-var nafta_max = 100
+var nafta_max = 100.0
 var nafta = nafta_max
-var monedas = 0
+var monedas = 0.0
 
 var cliente_escena = preload("res://escenas/partida/personas/cliente.tscn")
 var cliente_actual = null
@@ -54,8 +58,8 @@ var timer_dash: Timer
 func _ready() -> void:
 	chunk1.position.y = 0.0
 	chunk2.position.y = -altura_chunk
-	camion.position.x = get_viewport_rect().size.x / 2
-	camion.position.y = get_viewport_rect().size.y - 120
+	camion.position.x = get_viewport_rect().size.x / 2.0
+	camion.position.y = get_viewport_rect().size.y - 120.0
 	
 	musica_juego.play()
 	musica_juego.position.x = -1000
@@ -93,10 +97,10 @@ func _process(delta: float) -> void:
 	chunk2.position.y += velocidad * delta 
 	
 	if chunk1.position.y >= altura_chunk:
-		chunk1.position.y -= altura_chunk * 2
+		chunk1.position.y -= altura_chunk
 		
 	if chunk2.position.y >= altura_chunk:
-		chunk2.position.y -= altura_chunk * 2
+		chunk2.position.y -= altura_chunk
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pausar"):
@@ -125,6 +129,11 @@ func _on_agarrar_nafta():
 	nafta = min(nafta, nafta_max)
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 	
+	sonido_nafta.play()
+	
+	if nafta > nafta_max * 0.2:
+		nafta_baja_reproducida = false
+	
 	#dash
 func _on_timer_dash_timeout():
 	var superpuesto = false
@@ -138,7 +147,7 @@ func _on_timer_dash_timeout():
 		var dash = dash_escena.instantiate()
 		dash.position = Vector2(576, -100)
 		if en_dash:
-			dash.velocidad *= 3.0
+			dash.velocidad *= 2.0
 		$obstaculos.add_child(dash)
 		dash.agarrar_dash.connect(_on_agarrar_dash)
 #
@@ -147,10 +156,10 @@ func _on_agarrar_dash():
 		return
 	en_dash = true
 
-	velocidad *= 3.0
+	velocidad *= 2.0
 	
 	if camion.velocidad != null:
-		camion.velocidad *= 3.0
+		camion.velocidad *= 2.0
 	
 	#
 	if camion.get_node_or_null("CollisionShape2D"):
@@ -161,7 +170,7 @@ func _on_agarrar_dash():
 	for obs in $obstaculos.get_children():
 		var obstac = obs.get("velocidad")
 		if obstac != null and (obstac is int or obstac is float):
-			obs.velocidad *= 3.0
+			obs.velocidad *= 2.0
 	
 	#for obs in $obstaculos.get_children():
 		#if "velocidad" in obs: obs.velocidad *= 3.0
@@ -169,17 +178,17 @@ func _on_agarrar_dash():
 	for client in $clientes.get_children():
 		var cl = client.get("velocidad")
 		if cl != null and (cl is int and cl is float):
-			client.velocidad *= 3.0
+			client.velocidad *= 2.0
 		
 	#for client in $clientes.get_children():
 		#if "velocidad" in client: client.velocidad *= 3.0
 
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	
-	velocidad /= 3.0
+	velocidad /= 2.0
 	
 	if camion.velocidad != null:
-		camion.velocidad /= 3.0
+		camion.velocidad /= 2.0
 	
 	if camion.get_node_or_null("CollisionShape2D"):
 		camion.get_node_or_null("CollisionShape2D").set_deferred("disabled", false)
@@ -188,13 +197,13 @@ func _on_agarrar_dash():
 		var obstac = obs.get("velocidad")
 		
 		if obstac != null and (obstac is int or obstac is float):
-			obs.velocidad /= 3.0
+			obs.velocidad /= 2.0
 		#if "velocidad" in obs: obs.velocidad /= 3.0
 	for client in $clientes.get_children():
 		var cl = client.get("velocidad")
 		
 		if cl != null and (cl is int or cl is float):
-			client.velocidad /= 3.0
+			client.velocidad /= 2.0
 		#if "velocidad" in cli: cli.velocidad /= 3.0
 
 	en_dash = false
@@ -210,7 +219,7 @@ func _on_timer_obstaculos_timeout() -> void:
 		var ob = objeto.get("velocidad")
 		
 		if ob != null and (ob is int or ob is float):
-			objeto.velocidad *= 3.0
+			objeto.velocidad *= 2.0
 	
 	#if en_dash and objeto.get("velocidad") != null:
 		#objeto.velocidad *= 3.0

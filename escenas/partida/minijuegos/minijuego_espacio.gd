@@ -9,6 +9,7 @@ extends Control
 @onready var mensaje = $PanelContainer/resultado/mensaje
 @onready var game_counter = $GameCounter
 @onready var espacio = $SonidoEspacio
+@onready var mini_juego = $MusicMiniJuegos
 
 var cant_restante = 20
 var tiempo_restante = 5
@@ -20,6 +21,9 @@ signal perdido
 func _ready() -> void:
 	game_counter.play()
 	iniciar_cuenta()
+	
+	await game_counter.finished
+	mini_juego.play()
 
 func iniciar_cuenta() -> void:
 	cuenta.visible = true

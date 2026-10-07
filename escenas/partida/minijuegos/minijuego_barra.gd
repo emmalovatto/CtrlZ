@@ -31,6 +31,7 @@ func _ready() -> void:
 	game_counter.play()
 	iniciar_cuenta()
 	
+	await game_counter.finished
 	musica.play()
 
 

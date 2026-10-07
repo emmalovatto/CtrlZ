@@ -12,6 +12,8 @@ extends Control
 @onready var vida3 = $PanelContainer/minijuego/vidas/vida3
 @onready var game_counter = $GameCounter
 @onready var sonido_helado = $SonidoMiniJueg
+@onready var mini_juego = $MusicMiniJuego
+@onready var carta_falsa = $CartaNoEncontrada
 
 var escena_tarjeta = preload("res://escenas/partida/minijuegos/assets/tarjeta_memo.tscn")
 
@@ -40,6 +42,9 @@ var imagenes = [
 func _ready() -> void:
 	game_counter.play()
 	iniciar_cuenta()
+	
+	await game_counter.finished
+	mini_juego.play()
 
 func iniciar_cuenta() -> void:
 	cuenta.visible = true
@@ -113,7 +118,7 @@ func revelar_tarjetas():
 func _on_tarjeta_seleccionada(tarjeta):
 	if comprobando:
 		return
-	sonido_helado.play()
+	#sonido_helado.play()
 	tarjetas_seleccionadas.append(tarjeta)
 	if tarjetas_seleccionadas.size() == 2:
 		verificar_cartas()
@@ -123,10 +128,14 @@ func verificar_cartas():
 	var tarjeta1 = tarjetas_seleccionadas[0]
 	var tarjeta2 = tarjetas_seleccionadas[1]
 	bloquear_tarjetas()
+	carta_falsa.play()
+	
 
 	if tarjeta1.id_tarjeta == tarjeta2.id_tarjeta:
 		tarjeta1.marcar_encontrada()
 		tarjeta2.marcar_encontrada()
+		
+		sonido_helado.play()
 		
 		tarjeta1.encontrada = true
 		tarjeta2.encontrada = true
