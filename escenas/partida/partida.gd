@@ -97,10 +97,14 @@ func _process(delta: float) -> void:
 	chunk2.position.y += velocidad * delta 
 	
 	if chunk1.position.y >= altura_chunk:
-		chunk1.position.y -= altura_chunk
-		
+		chunk1.position.y = chunk2.position.y - altura_chunk
 	if chunk2.position.y >= altura_chunk:
-		chunk2.position.y -= altura_chunk
+		chunk2.position.y = chunk1.position.y - altura_chunk
+	#if chunk1.position.y >= altura_chunk:
+		#chunk1.position.y -= altura_chunk
+		
+	#if chunk2.position.y >= altura_chunk:
+		#chunk2.position.y -= altura_chunk
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pausar"):
@@ -136,20 +140,36 @@ func _on_agarrar_nafta():
 	
 	#dash
 func _on_timer_dash_timeout():
-	var superpuesto = false
-	#
-	for obs in $obstaculos.get_children():
-		if obs.position.x == 576 and obs.position.y < 50:
-			superpuesto = true
-			break
-	#
-	if not superpuesto:
+	var libres = []
+	for c in carriles:
+		var ocupado = false
+		for obs in $obstaculos.get_children():
+			if abs(obs.position.x - c) < 10.0 and obs.position.y < 50:
+				ocupado = true
+				break
+		if not ocupado:
+			libres.append(c)
+			
+	if libres.size() > 0:
 		var dash = dash_escena.instantiate()
-		dash.position = Vector2(576, -100)
+		dash.position = Vector2(libres.pick_random(), -100)
 		if en_dash:
 			dash.velocidad *= 2.0
 		$obstaculos.add_child(dash)
 		dash.agarrar_dash.connect(_on_agarrar_dash)
+	
+	#var superpuesto = false
+	#for obs in $obstaculos.get_children():
+		#if obs.position.x == 576 and obs.position.y < 50:
+			#superpuesto = true
+			#break
+	#if not superpuesto:
+		#var dash = dash_escena.instantiate()
+		#dash.position = Vector2(576, -100)
+		#if en_dash:
+			#dash.velocidad *= 2.0
+		#$obstaculos.add_child(dash)
+		#dash.agarrar_dash.connect(_on_agarrar_dash)
 #
 func _on_agarrar_dash():
 	if en_dash: 
@@ -177,7 +197,7 @@ func _on_agarrar_dash():
 		
 	for client in $clientes.get_children():
 		var cl = client.get("velocidad")
-		if cl != null and (cl is int and cl is float):
+		if cl != null and (cl is int or cl is float):
 			client.velocidad *= 2.0
 		
 	#for client in $clientes.get_children():

@@ -2,6 +2,9 @@ extends Area2D
 #
 @export var velocidad = 400.0
 signal agarrar_dash
+
+#func _ready() -> void:
+	#body_entered.connect(_on_body_entered)
 #
 func _process(delta: float) -> void:
 	position.y += velocidad * delta
