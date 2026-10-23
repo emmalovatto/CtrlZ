@@ -43,6 +43,18 @@ var escenas_minijuegos = [
 	preload("res://escenas/partida/minijuegos/minijuego_barra.tscn"),
 	preload("res://escenas/partida/minijuegos/minijuego_memotest.tscn")
 ]
+
+var fondos = [
+	preload("res://sprites/calle.png"),
+	preload("res://sprites/fondo_ciudad.png"),
+	preload("res://sprites/fondo_noche.png"),
+	preload("res://sprites/fondo_desierto.png")
+]
+var zona_actual = 0
+
+var velocidades_zona = [400.0, 500.0, 600.0, 700.0]
+var velocidad_objetos = 400.0
+
 var altura_chunk:float = 648.0
 var limite_izq = 376
 var limite_der = 776
@@ -100,17 +112,11 @@ func _process(delta: float) -> void:
 		chunk1.position.y = chunk2.position.y - altura_chunk
 	if chunk2.position.y >= altura_chunk:
 		chunk2.position.y = chunk1.position.y - altura_chunk
-	#if chunk1.position.y >= altura_chunk:
-		#chunk1.position.y -= altura_chunk
-		
-	#if chunk2.position.y >= altura_chunk:
-		#chunk2.position.y -= altura_chunk
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pausar"):
 		get_tree().paused = true
 		$pausa.visible = true
-		
 	
 	if event.is_action_pressed("iniciar_minijuego"):
 		if cliente_actual != null:
@@ -153,8 +159,9 @@ func _on_timer_dash_timeout():
 	if libres.size() > 0:
 		var dash = dash_escena.instantiate()
 		dash.position = Vector2(libres.pick_random(), -100)
-		if en_dash:
-			dash.velocidad *= 2.0
+		
+		aplicar_velocidad_objeto(dash)
+		
 		$obstaculos.add_child(dash)
 		dash.agarrar_dash.connect(_on_agarrar_dash)
 	
@@ -172,80 +179,38 @@ func _on_timer_dash_timeout():
 		#dash.agarrar_dash.connect(_on_agarrar_dash)
 #
 func _on_agarrar_dash():
-	if en_dash: 
+	if en_dash:
 		return
+		
 	en_dash = true
+	actualizar_velocidades_durante_dash()
 
-	velocidad *= 2.0
-	
-	if camion.velocidad != null:
-		camion.velocidad *= 2.0
-	
-	#
-	if camion.get_node_or_null("CollisionShape2D"):
-		camion.get_node_or_null("CollisionShape2D").set_deferred("disabled", true)
-	
-	
-	# Acelerar todos los objetos que ya están en la pantalla
-	for obs in $obstaculos.get_children():
-		var obstac = obs.get("velocidad")
-		if obstac != null and (obstac is int or obstac is float):
-			obs.velocidad *= 2.0
-	
-	#for obs in $obstaculos.get_children():
-		#if "velocidad" in obs: obs.velocidad *= 3.0
+	var colision = camion.get_node_or_null("CollisionShape2D")
+	if colision:
+		colision.set_deferred("disabled", true)
 		
-	for client in $clientes.get_children():
-		var cl = client.get("velocidad")
-		if cl != null and (cl is int or cl is float):
-			client.velocidad *= 2.0
-		
-	#for client in $clientes.get_children():
-		#if "velocidad" in client: client.velocidad *= 3.0
-
 	await get_tree().create_timer(2.0).timeout
 	
-	velocidad /= 2.0
-	
-	if camion.velocidad != null:
-		camion.velocidad /= 2.0
-	
-	if camion.get_node_or_null("CollisionShape2D"):
-		camion.get_node_or_null("CollisionShape2D").set_deferred("disabled", false)
-
-	for obs in $obstaculos.get_children():
-		var obstac = obs.get("velocidad")
-		
-		if obstac != null and (obstac is int or obstac is float):
-			obs.velocidad /= 2.0
-		#if "velocidad" in obs: obs.velocidad /= 3.0
-	for client in $clientes.get_children():
-		var cl = client.get("velocidad")
-		
-		if cl != null and (cl is int or cl is float):
-			client.velocidad /= 2.0
-		#if "velocidad" in cli: cli.velocidad /= 3.0
-
 	en_dash = false
+	velocidad = velocidades_zona[zona_actual]
+
+	for objeto in $obstaculos.get_children():
+		aplicar_velocidad_objeto(objeto)
+
+	for cliente in $clientes.get_children():
+		aplicar_velocidad_objeto(cliente)
+
+	if colision:
+		colision.set_deferred("disabled", false)
 
 func _on_timer_obstaculos_timeout() -> void:
-	var objeto = escenas_obstaculos.pick_random().instantiate()	
+	var objeto = escenas_obstaculos.pick_random().instantiate()
+		
 	objeto.position = Vector2(
 		carriles.pick_random(),
 		-100
 	)
-	
-	if en_dash:
-		var ob = objeto.get("velocidad")
-		
-		if ob != null and (ob is int or ob is float):
-			objeto.velocidad *= 2.0
-	
-	#if en_dash and objeto.get("velocidad") != null:
-		#objeto.velocidad *= 3.0
-	
-	#if en_dash and "velocidad" in objeto:
-		#objeto.velocidad *= 3.0
+	aplicar_velocidad_objeto(objeto)
 	
 	$obstaculos.add_child(objeto)
 	objeto.choque_jugador.connect(_on_choque_jugador)
@@ -254,10 +219,14 @@ func _on_timer_obstaculos_timeout() -> void:
 	
 func _on_timer_clientes_timeout() -> void:
 	var objeto = cliente_escena.instantiate()
+		
 	objeto.position = Vector2(
 		veredas.pick_random(),
 		-100
 	)
+	
+	aplicar_velocidad_objeto(objeto)
+	
 	if objeto.position.x == 870:
 		objeto.rotation_degrees = 180
 	$clientes.add_child(objeto)
@@ -273,6 +242,9 @@ func _on_timer_nafta_spawn_timeout() -> void:
 		carriles.pick_random(),
 		-100
 	)
+	
+	aplicar_velocidad_objeto(objeto)
+
 	$obstaculos.add_child(objeto)
 	objeto.agarrar_nafta.connect(_on_agarrar_nafta)
 	$timer_nafta_spawn.wait_time = randf_range(8.0, 12.0)
@@ -298,10 +270,59 @@ func abrir_minijuego():
 	minijuego.perdido.connect(_on_perdido)
 	get_tree().paused = true
 	minijuego.visible = true
+
+func cambiar_fondo():
+	chunk1.get_node("Sprite2D").texture = fondos[zona_actual]
+	chunk2.get_node("Sprite2D").texture = fondos[zona_actual]
+
+func actualizar_zona():
+	var nueva_zona = 0
+
+	if monedas >= 200:
+		nueva_zona = 3
+	elif monedas >= 100:
+		nueva_zona = 2
+	elif monedas >= 50:
+		nueva_zona = 1
+
+	if zona_actual != nueva_zona:
+		zona_actual = nueva_zona
+
+		velocidad = velocidades_zona[zona_actual]
+		cambiar_fondo()
+
+		for objeto in $obstaculos.get_children():
+			aplicar_velocidad_objeto(objeto)
+
+		for cliente in $clientes.get_children():
+			aplicar_velocidad_objeto(cliente)
+
+func aplicar_velocidad_objeto(objeto):
+	var velocidad_base = objeto.get_meta("velocidad_base", objeto.get("velocidad"))
+
+	if velocidad_base == null:
+		return
+
+	objeto.set_meta("velocidad_base", velocidad_base)
+	var factor = velocidades_zona[zona_actual] / 400.0
+
+	if en_dash:
+		factor *= 2.0
+	objeto.set("velocidad", velocidad_base * factor)
 	
+func actualizar_velocidades_durante_dash():
+	velocidad = velocidades_zona[zona_actual] * 2.0
+
+	for objeto in $obstaculos.get_children():
+		aplicar_velocidad_objeto(objeto)
+
+	for cliente in $clientes.get_children():
+		aplicar_velocidad_objeto(cliente)
+
 func _on_ganado():
 	moneds.play()
 	monedas += 50
+	actualizar_zona()
 	$CanvasLayer/monedas_texto.text = str(monedas)
 	get_tree().paused = false
 	
@@ -316,3 +337,4 @@ func partida_terminada():
 func _on_timer_monedas_timeout() -> void:
 	monedas += 2
 	$CanvasLayer/monedas_texto.text = str(monedas)
+	actualizar_zona()
