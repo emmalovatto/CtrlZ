@@ -47,5 +47,5 @@ theme_override_constants/margin_bottom = 35
 layout_mode = 2
 theme = ExtResource("1_1jdpf")
 theme_override_font_sizes/font_size = 12
-text = "Presione ENTER para volver al menu principal"
+text = "Presione ENTER para volver a jugar"
 horizontal_alignment = 1

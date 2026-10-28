@@ -56,4 +56,19 @@ layout_mode = 2
 theme_override_constants/margin_top = 20
 
 [node name="lista_puntuaciones" type="VBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=854821794]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=502358240]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1033463291]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_m66ux")
+text = "CERRAR"
+
+[connection signal="button_up" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_button_up"]

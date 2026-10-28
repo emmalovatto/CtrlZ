@@ -7,7 +7,7 @@ func _ready() -> void:
 func mostrar_puntuaciones() -> void:
 	var puntuaciones = Puntuaciones.obtener_mejores_puntuaciones()
 
-	var cantidad = min(puntuaciones.size(), 10)
+	var cantidad = min(puntuaciones.size(), 5)
 
 	for i in range(cantidad):
 		var puntuacion = puntuaciones[i]
@@ -26,3 +26,8 @@ func mostrar_puntuaciones() -> void:
 		fila.add_child(puntaje)
 
 		lista.add_child(fila)
+
+
+
+func _on_button_button_up() -> void:
+	get_tree().change_scene_to_file("res://escenas/menu_principal/menu.tscn")
