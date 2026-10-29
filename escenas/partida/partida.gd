@@ -13,6 +13,11 @@ extends Node2D
 @onready var sonido_nafta = $Nafta
 @onready var sonido_nafta_baja = $NaftaBaja
 
+@onready var fondo_actual1 = $chunk1/Sprite2D
+@onready var fondo_actual2 = $chunk2/Sprite2D
+@onready var fondo_nuevo1 = $chunk1/sprite_nuevo
+@onready var fondo_nuevo2 = $chunk2/sprite_nuevo
+
 var nafta_baja_reproducida = false
 
 var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
@@ -27,6 +32,12 @@ var nafta = nafta_max
 var monedas = 0.0
 
 var cliente_escena = preload("res://escenas/partida/personas/cliente.tscn")
+var clientes_sprites = [
+	preload("res://sprites/cliente.png"),
+	preload("res://sprites/cliente2.png"),
+	preload("res://sprites/cliente3.png"),
+	preload("res://sprites/cliente4.png")
+]
 var cliente_actual = null
 var veredas = [
 	280,
@@ -224,7 +235,11 @@ func _on_timer_clientes_timeout() -> void:
 		veredas.pick_random(),
 		-100
 	)
+	var sprite = objeto.get_node_or_null("Sprite2D")
 	
+	if sprite != null:
+		sprite.texture = clientes_sprites.pick_random()
+
 	aplicar_velocidad_objeto(objeto)
 	
 	if objeto.position.x == 870:
@@ -247,7 +262,7 @@ func _on_timer_nafta_spawn_timeout() -> void:
 
 	$obstaculos.add_child(objeto)
 	objeto.agarrar_nafta.connect(_on_agarrar_nafta)
-	$timer_nafta_spawn.wait_time = randf_range(8.0, 12.0)
+	$timer_nafta_spawn.wait_time = randf_range(7.0, 10.0)
 
 func _on_timer_nafta_timeout() -> void:
 	nafta -= 2
@@ -289,7 +304,7 @@ func actualizar_zona():
 		zona_actual = nueva_zona
 
 		velocidad = velocidades_zona[zona_actual]
-		cambiar_fondo()
+		transicionar_fondo()
 
 		for objeto in $obstaculos.get_children():
 			aplicar_velocidad_objeto(objeto)
@@ -318,6 +333,33 @@ func actualizar_velocidades_durante_dash():
 
 	for cliente in $clientes.get_children():
 		aplicar_velocidad_objeto(cliente)
+		
+func transicionar_fondo():
+	var nuevo_fondo = fondos[zona_actual]
+
+	fondo_nuevo1.texture = nuevo_fondo
+	fondo_nuevo2.texture = nuevo_fondo
+
+	fondo_nuevo1.modulate.a = 0.0
+	fondo_nuevo2.modulate.a = 0.0
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+
+	tween.tween_property(
+		fondo_nuevo1, "modulate:a", 1.0, 1.5
+	)
+	tween.tween_property(
+		fondo_nuevo2, "modulate:a", 1.0, 1.5
+	)
+
+	await tween.finished
+
+	fondo_actual1.texture = nuevo_fondo
+	fondo_actual2.texture = nuevo_fondo
+
+	fondo_nuevo1.modulate.a = 0.0
+	fondo_nuevo2.modulate.a = 0.0
 
 func _on_ganado():
 	moneds.play()

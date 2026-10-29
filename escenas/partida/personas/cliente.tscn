@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bexoq6dk2bu25" path="res://escenas/partida/personas/cliente.gd" id="1_0qnn1"]
 [ext_resource type="Texture2D" uid="uid://cdv1ogkjnuxls" path="res://sprites/cliente.png" id="2_0qnn1"]
+[ext_resource type="Texture2D" uid="uid://bsjf22sfkbqf7" path="res://sprites/dialogo(...).png" id="3_wu8f5"]
+[ext_resource type="Texture2D" uid="uid://da5lililrlrn4" path="res://sprites/dialogo(!).png" id="4_mxp7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qnn1"]
 size = Vector2(162.91049, 73)
@@ -18,6 +20,15 @@ texture = ExtResource("2_0qnn1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1613754294]
 position = Vector2(59.54475, 3.5)
 shape = SubResource("RectangleShape2D_0qnn1")
+
+[node name="dialogo_lejos" type="Sprite2D" parent="." unique_id=20045474]
+position = Vector2(22, -36)
+texture = ExtResource("3_wu8f5")
+
+[node name="dialogo_cerca" type="Sprite2D" parent="." unique_id=1447291587]
+visible = false
+position = Vector2(22, -36)
+texture = ExtResource("4_mxp7p")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

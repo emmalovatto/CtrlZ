@@ -7,3 +7,9 @@
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1586269047]
 position = Vector2(576, 324)
 texture = ExtResource("1_0xthh")
+
+[node name="sprite_nuevo" type="Sprite2D" parent="." unique_id=1246191738]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+position = Vector2(576, 324)
+texture = ExtResource("1_0xthh")

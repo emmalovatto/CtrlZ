@@ -122,8 +122,10 @@ autostart = true
 visible = false
 
 [node name="obstaculos" type="Node2D" parent="." unique_id=955666452]
+z_index = 2
 
 [node name="clientes" type="Node2D" parent="." unique_id=919174721]
+z_index = 2
 
 [node name="minijuego" type="CanvasLayer" parent="." unique_id=314205732]
 

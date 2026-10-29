@@ -32,11 +32,11 @@ signal perdido
 
 var imagenes = [
 	preload("res://sprites/helado.png"),
-	preload("res://sprites/nafta.png"),
-	preload("res://sprites/auto_obstaculo.png"),
-	preload("res://sprites/barrera_obstaculo.png"),
-	preload("res://sprites/camion_arriba.png"),
-	preload("res://sprites/cliente.png")
+	preload("res://sprites/helado2.png"),
+	preload("res://sprites/helado3.png"),
+	preload("res://sprites/helado4.png"),
+	preload("res://sprites/helado5.png"),
+	preload("res://sprites/helado6.png"),
 ]
 
 func _ready() -> void:
