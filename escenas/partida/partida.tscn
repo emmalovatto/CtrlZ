@@ -35,6 +35,9 @@ corner_detail = 20
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccpoe"]
 size = Vector2(146, 285)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgpir"]
+size = Vector2(138, 282)
+
 [node name="Partida" type="Node2D" unique_id=1258901090]
 script = ExtResource("1_tbcb8")
 
@@ -90,6 +93,7 @@ visible = false
 stream = ExtResource("4_3f4ib")
 
 [node name="camion" type="CharacterBody2D" parent="." unique_id=1139928182 groups=["player"]]
+z_index = 2
 position = Vector2(576, 520)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("5_ccpoe")
@@ -103,6 +107,12 @@ texture = ExtResource("5_kaohx")
 
 [node name="SonidoMovimiento" type="AudioStreamPlayer2D" parent="camion" unique_id=1312063811]
 stream = ExtResource("7_66wp1")
+
+[node name="Area2D" type="Area2D" parent="camion" unique_id=366155701]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camion/Area2D" unique_id=27022199]
+position = Vector2(3, 5)
+shape = SubResource("RectangleShape2D_pgpir")
 
 [node name="timer_obstaculos" type="Timer" parent="." unique_id=1796095413]
 autostart = true
@@ -157,6 +167,7 @@ autostart = true
 [node name="NaftaBaja" type="AudioStreamPlayer" parent="." unique_id=1938382728]
 
 [connection signal="finished" from="MusicaJuego" to="." method="_on_musica_juego_finished"]
+[connection signal="body_entered" from="camion/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_clientes" to="." method="_on_timer_clientes_timeout"]
 [connection signal="timeout" from="timer_nafta_spawn" to="." method="_on_timer_nafta_spawn_timeout"]

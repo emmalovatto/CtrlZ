@@ -13,7 +13,9 @@ config_version=5
 config/name="ice_cream_dash"
 run/main_scene="uid://dmuy55fnxcnyb"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+boot_splash/image="uid://fxhic2ln3fu0"
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1500
 
 [autoload]
 

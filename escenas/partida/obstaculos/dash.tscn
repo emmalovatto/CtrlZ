@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cau4tis4frji1" path="res://escenas/partida/obstaculos/dash.gd" id="1_ws6ga"]
 [ext_resource type="Texture2D" uid="uid://ck3c2pyapb56m" path="res://sprites/dash.png" id="2_8rc4l"]
+[ext_resource type="AudioStream" uid="uid://bl13n6rdn61la" path="res://audio/efectos_sonido/dash.wav" id="3_1ahvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rc4l"]
-size = Vector2(56.36363, 108.18179)
+size = Vector2(47.27272, 103.63634)
 
 [node name="Dash" type="Area2D" unique_id=292243137]
 scale = Vector2(1.1, 1.1)
@@ -14,8 +15,13 @@ script = ExtResource("1_ws6ga")
 texture = ExtResource("2_8rc4l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=478606337]
-position = Vector2(-15.454545, -3.181808)
+position = Vector2(-15.454545, -5.454534)
 scale = Vector2(1.0000001, 1)
 shape = SubResource("RectangleShape2D_8rc4l")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=624556742]
+stream = ExtResource("3_1ahvi")
+volume_db = 14.579
+pitch_scale = 5.3
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

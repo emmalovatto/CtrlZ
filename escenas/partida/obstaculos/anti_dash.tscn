@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://djogcp5wk3bmj"]
+
+[ext_resource type="Script" uid="uid://dan74fyhltq3d" path="res://escenas/partida/obstaculos/anti_dash.gd" id="1_8ftd4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gla6"]
+
+[node name="Area2D" type="Area2D" unique_id=185562874]
+script = ExtResource("1_8ftd4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=594710848]
+shape = SubResource("RectangleShape2D_0gla6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=225687382]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1649715781]

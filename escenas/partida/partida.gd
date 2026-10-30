@@ -302,8 +302,11 @@ func actualizar_zona():
 
 	if zona_actual != nueva_zona:
 		zona_actual = nueva_zona
-
-		velocidad = velocidades_zona[zona_actual]
+		
+		if en_dash:
+			velocidad = velocidades_zona[zona_actual] * 2.0
+		else:
+			velocidad = velocidades_zona[zona_actual]
 		transicionar_fondo()
 
 		for objeto in $obstaculos.get_children():
@@ -377,6 +380,15 @@ func partida_terminada():
 	get_tree().paused = true
 
 func _on_timer_monedas_timeout() -> void:
-	monedas += 2
+	if en_dash:
+		monedas += 5
+	else:
+		monedas += 2
 	$CanvasLayer/monedas_texto.text = str(monedas)
 	actualizar_zona()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("nafta"):
+		_on_agarrar_nafta()
+		body.queue_free()
