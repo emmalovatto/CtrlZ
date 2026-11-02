@@ -91,6 +91,7 @@ visible = false
 
 [node name="MusicaJuego" type="AudioStreamPlayer2D" parent="." unique_id=479899051]
 stream = ExtResource("4_3f4ib")
+volume_db = 0.9
 
 [node name="camion" type="CharacterBody2D" parent="." unique_id=1139928182 groups=["player"]]
 z_index = 2
@@ -150,7 +151,7 @@ bus = &"Sfx"
 [node name="SonidoGameOver" type="AudioStreamPlayer" parent="." unique_id=1299497839]
 process_mode = 3
 stream = ExtResource("12_tkxrp")
-volume_db = -10.692
+volume_db = -13.692
 bus = &"Music"
 
 [node name="FrenarPedido" type="AudioStreamPlayer" parent="." unique_id=1144250430]
@@ -167,6 +168,7 @@ autostart = true
 [node name="NaftaBaja" type="AudioStreamPlayer" parent="." unique_id=1938382728]
 
 [connection signal="finished" from="MusicaJuego" to="." method="_on_musica_juego_finished"]
+[connection signal="area_entered" from="camion/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="camion/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="timer_obstaculos" to="." method="_on_timer_obstaculos_timeout"]
 [connection signal="timeout" from="timer_clientes" to="." method="_on_timer_clientes_timeout"]

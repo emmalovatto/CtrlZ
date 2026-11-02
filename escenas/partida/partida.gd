@@ -79,6 +79,7 @@ var carriles = [
 var timer_dash: Timer
 
 func _ready() -> void:
+	
 	chunk1.position.y = 0.0
 	chunk2.position.y = -altura_chunk
 	camion.position.x = get_viewport_rect().size.x / 2.0
@@ -137,12 +138,34 @@ func tiempo_rand():
 	$timer_obstaculos.wait_time = randf_range(1, 2.5)
 
 func _on_choque_jugador():
+	if en_dash:
+		return
+
+	velocidad = 0
+
+	for objeto in $obstaculos.get_children():
+		objeto.set_process(false)
+
+	for cliente in $clientes.get_children():
+		cliente.set_process(false)
+
+	camion.set_process(false)
+	camion.set_physics_process(false)
+
 	musica_juego.stop()
 	sonido_choque.play()
-	
+
+	var tween = create_tween()
+	tween.tween_property(
+		camion,
+		"position:y",
+		camion.position.y + 12.0,
+		0.12
+	)
+
 	await sonido_choque.finished
+
 	game_over.play()
-	camion.set_physics_process(false)
 	partida_terminada()
 	
 func _on_agarrar_nafta():
@@ -176,19 +199,7 @@ func _on_timer_dash_timeout():
 		$obstaculos.add_child(dash)
 		dash.agarrar_dash.connect(_on_agarrar_dash)
 	
-	#var superpuesto = false
-	#for obs in $obstaculos.get_children():
-		#if obs.position.x == 576 and obs.position.y < 50:
-			#superpuesto = true
-			#break
-	#if not superpuesto:
-		#var dash = dash_escena.instantiate()
-		#dash.position = Vector2(576, -100)
-		#if en_dash:
-			#dash.velocidad *= 2.0
-		#$obstaculos.add_child(dash)
-		#dash.agarrar_dash.connect(_on_agarrar_dash)
-#
+	
 func _on_agarrar_dash():
 	if en_dash:
 		return
@@ -265,6 +276,9 @@ func _on_timer_nafta_spawn_timeout() -> void:
 	$timer_nafta_spawn.wait_time = randf_range(7.0, 10.0)
 
 func _on_timer_nafta_timeout() -> void:
+	if en_dash:
+		return
+	
 	nafta -= 2
 	if nafta < 0:
 		nafta = 0
@@ -392,3 +406,10 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("nafta"):
 		_on_agarrar_nafta()
 		body.queue_free()
+
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.is_in_group("nafta"):
+		_on_agarrar_nafta()
+		area.queue_free()

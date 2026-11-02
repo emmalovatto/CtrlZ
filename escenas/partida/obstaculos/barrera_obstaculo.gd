@@ -17,6 +17,6 @@ func _on_body_entered(body: Node2D) -> void:
 		choque_jugador.emit()
 
 
-func _on_collision_shape_2d_tree_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		choque_jugador.emit()
+#func _on_collision_shape_2d_tree_entered(body: Node2D) -> void:
+	#if body.is_in_group("player"):
+		#choque_jugador.emit()
