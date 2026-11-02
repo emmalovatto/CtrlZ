@@ -1,11 +1,19 @@
 extends Area2D
 
+@onready var sonido = $AudioStreamPlayer2D
+@export var velocidad = 400.0
+signal agarrar_anti_dash
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	body_entered.connect(_on_body_entered)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	position.y += velocidad * delta
+	if position.y > 700:
+		queue_free()
+
+func _on_body_entered(body):
+	if body.name == "camion":
+		sonido.play()
+		agarrar_anti_dash.emit()
+		queue_free()

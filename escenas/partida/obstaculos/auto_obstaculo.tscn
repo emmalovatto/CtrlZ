@@ -4,14 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://do7uc7xrl4wth" path="res://sprites/auto_obstaculo.png" id="2_bqtnu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u6qk"]
-size = Vector2(340, 477)
+size = Vector2(322.2222, 477)
 
 [node name="Area2D" type="Area2D" unique_id=417959352]
 scale = Vector2(0.18, 0.18)
 script = ExtResource("1_2hirj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1421003050]
-position = Vector2(7, 11.5)
+position = Vector2(11.111103, 11.500006)
+scale = Vector2(1.0000001, 1.0000001)
 shape = SubResource("RectangleShape2D_8u6qk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1552834975]

@@ -1,8 +1,11 @@
 extends Control
 
 @onready var lista = $PanelContainer/VBoxContainer/lista_puntuaciones
+@onready var musica = $AudioStreamPlayer
+
 func _ready() -> void:
 	mostrar_puntuaciones()
+	musica.play()
 
 func mostrar_puntuaciones() -> void:
 	var puntuaciones = Puntuaciones.obtener_mejores_puntuaciones()

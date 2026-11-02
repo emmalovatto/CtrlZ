@@ -18,6 +18,11 @@ extends Node2D
 @onready var fondo_nuevo1 = $chunk1/sprite_nuevo
 @onready var fondo_nuevo2 = $chunk2/sprite_nuevo
 
+#anti_dash
+var anti_dash_escena = preload("res://escenas/partida/obstaculos/anti_dash.tscn")
+var en_anti_dash = false
+var timer_anti_dash: Timer
+
 var nafta_baja_reproducida = false
 
 var nafta_escena = preload("res://escenas/partida/obstaculos/nafta.tscn")
@@ -102,7 +107,58 @@ func _ready() -> void:
 	timer_dash.autostart = true
 	timer_dash.timeout.connect(_on_timer_dash_timeout)
 	add_child(timer_dash)
+	
+	#anti_dash
+	timer_anti_dash = Timer.new()
+	timer_anti_dash.wait_time = 15.0
+	timer_anti_dash.autostart = true
+	timer_anti_dash.timeout.connect(_on_timer_anti_dash_timeout)
+	add_child(timer_anti_dash)
+	
+func factor_estado() -> float:
+	if en_dash:
+		return 2.0
+	if en_anti_dash:
+		return 0.5
+	return 1.0
 
+func aplicar_estado_velocidad() -> void:
+	velocidad = velocidades_zona[zona_actual] * factor_estado()
+	for objeto in $obstaculos.get_children():
+		aplicar_velocidad_objeto(objeto)
+	for cliente in $clientes.get_children():
+		aplicar_velocidad_objeto(cliente)
+
+func _on_timer_anti_dash_timeout():
+	var libres = []
+	for c in carriles:
+		var ocupado = false
+		for obs in $obstaculos.get_children():
+			if abs(obs.position.x - c) < 10.0 and obs.position.y < 50:
+				ocupado = true
+				break
+		if not ocupado:
+			libres.append(c)
+
+	if libres.size() > 0:
+		var anti = anti_dash_escena.instantiate()
+		anti.position = Vector2(libres.pick_random(), -100)
+		aplicar_velocidad_objeto(anti)
+		$obstaculos.add_child(anti)
+		anti.agarrar_anti_dash.connect(_on_agarrar_anti_dash)
+
+func _on_agarrar_anti_dash():
+	if en_dash or en_anti_dash:
+		return
+
+	en_anti_dash = true
+	aplicar_estado_velocidad()
+
+	await get_tree().create_timer(3.0).timeout
+
+	en_anti_dash = false
+	aplicar_estado_velocidad()	
+	
 func _on_musica_juego_finished() -> void:
 	musica_juego.play()
 
@@ -201,7 +257,7 @@ func _on_timer_dash_timeout():
 	
 	
 func _on_agarrar_dash():
-	if en_dash:
+	if en_dash or en_anti_dash:
 		return
 		
 	en_dash = true
@@ -214,7 +270,10 @@ func _on_agarrar_dash():
 	await get_tree().create_timer(2.0).timeout
 	
 	en_dash = false
-	velocidad = velocidades_zona[zona_actual]
+	aplicar_estado_velocidad()
+	if colision:
+		colision.set_deferred("disabled", false)
+	#velocidad = velocidades_zona[zona_actual]
 
 	for objeto in $obstaculos.get_children():
 		aplicar_velocidad_objeto(objeto)
@@ -278,12 +337,12 @@ func _on_timer_nafta_spawn_timeout() -> void:
 func _on_timer_nafta_timeout() -> void:
 	if en_dash:
 		return
+	nafta -= 4 if en_anti_dash else 2
 	
-	nafta -= 2
+	#nafta -= 2
 	if nafta < 0:
 		nafta = 0
 		partida_terminada()
-	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 	$CanvasLayer/HBoxContainer/barra_nafta.value = nafta
 
 func _on_cliente_cerca(cliente):
@@ -317,11 +376,16 @@ func actualizar_zona():
 	if zona_actual != nueva_zona:
 		zona_actual = nueva_zona
 		
-		if en_dash:
-			velocidad = velocidades_zona[zona_actual] * 2.0
-		else:
-			velocidad = velocidades_zona[zona_actual]
+	if zona_actual != nueva_zona:
+		zona_actual = nueva_zona
+		aplicar_estado_velocidad()
 		transicionar_fondo()
+		
+		#if en_dash:
+			#velocidad = velocidades_zona[zona_actual] * 2.0
+		#else:
+			#velocidad = velocidades_zona[zona_actual]
+		#transicionar_fondo()
 
 		for objeto in $obstaculos.get_children():
 			aplicar_velocidad_objeto(objeto)
@@ -337,10 +401,13 @@ func aplicar_velocidad_objeto(objeto):
 
 	objeto.set_meta("velocidad_base", velocidad_base)
 	var factor = velocidades_zona[zona_actual] / 400.0
-
-	if en_dash:
-		factor *= 2.0
+	
+	factor *= factor_estado()
 	objeto.set("velocidad", velocidad_base * factor)
+
+	#if en_dash:
+		#factor *= 2.0
+	#objeto.set("velocidad", velocidad_base * factor)
 	
 func actualizar_velocidades_durante_dash():
 	velocidad = velocidades_zona[zona_actual] * 2.0
@@ -396,6 +463,8 @@ func partida_terminada():
 func _on_timer_monedas_timeout() -> void:
 	if en_dash:
 		monedas += 5
+	elif en_anti_dash:
+		monedas += 1
 	else:
 		monedas += 2
 	$CanvasLayer/monedas_texto.text = str(monedas)

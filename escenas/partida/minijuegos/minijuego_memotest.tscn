@@ -160,7 +160,7 @@ bus = &"Sfx"
 
 [node name="MusicMiniJuego" type="AudioStreamPlayer" parent="." unique_id=1950513107]
 stream = ExtResource("7_6p8l6")
-volume_db = -16.273
+volume_db = -5.0
 bus = &"Music"
 
 [node name="CartaNoEncontrada" type="AudioStreamPlayer" parent="." unique_id=690877099]

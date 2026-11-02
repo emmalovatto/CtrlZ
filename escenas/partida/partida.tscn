@@ -33,7 +33,7 @@ corner_radius_bottom_left = 20
 corner_detail = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ccpoe"]
-size = Vector2(146, 285)
+size = Vector2(147, 283)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgpir"]
 size = Vector2(138, 282)
@@ -100,7 +100,7 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("5_ccpoe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="camion" unique_id=1061836226]
-position = Vector2(2, 6.5)
+position = Vector2(1.5, 7.5)
 shape = SubResource("RectangleShape2D_ccpoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="camion" unique_id=1762147013]

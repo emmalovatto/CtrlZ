@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_m66ux"]
 [ext_resource type="Script" uid="uid://d3aty7yddmore" path="res://escenas/menu_principal/leaderboard.gd" id="2_nwflb"]
+[ext_resource type="AudioStream" uid="uid://dg4hy8pjo1346" path="res://audio/musica/Frost-Cart_1.wav" id="3_f81qs"]
 
 [node name="Leaderboard" type="Control" unique_id=96411118]
 layout_mode = 3
@@ -70,5 +71,9 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_m66ux")
 text = "CERRAR"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=19495107]
+stream = ExtResource("3_f81qs")
+volume_db = -7.0
 
 [connection signal="button_up" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_button_up"]
