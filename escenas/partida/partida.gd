@@ -376,16 +376,16 @@ func actualizar_zona():
 	if zona_actual != nueva_zona:
 		zona_actual = nueva_zona
 		
-	if zona_actual != nueva_zona:
-		zona_actual = nueva_zona
-		aplicar_estado_velocidad()
-		transicionar_fondo()
-		
-		#if en_dash:
-			#velocidad = velocidades_zona[zona_actual] * 2.0
-		#else:
-			#velocidad = velocidades_zona[zona_actual]
+	#if zona_actual != nueva_zona:
+		#zona_actual = nueva_zona
+		#aplicar_estado_velocidad()
 		#transicionar_fondo()
+		
+		if en_dash:
+			velocidad = velocidades_zona[zona_actual] * 2.0
+		else:
+			velocidad = velocidades_zona[zona_actual]
+		transicionar_fondo()
 
 		for objeto in $obstaculos.get_children():
 			aplicar_velocidad_objeto(objeto)
