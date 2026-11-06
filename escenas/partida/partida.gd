@@ -34,7 +34,8 @@ var en_dash = false
 
 var nafta_max = 100.0
 var nafta = nafta_max
-var monedas = 0.0
+var monedas = 0
+var suma_monedas = 2
 
 var cliente_escena = preload("res://escenas/partida/personas/cliente.tscn")
 var clientes_sprites = [
@@ -64,7 +65,7 @@ var fondos = [
 	preload("res://sprites/calle.png"),
 	preload("res://sprites/fondo_ciudad.png"),
 	preload("res://sprites/fondo_noche.png"),
-	preload("res://sprites/fondo_desierto.png")
+	preload("res://sprites/fondo_desierto.jpg")
 ]
 var zona_actual = 0
 
@@ -366,11 +367,14 @@ func cambiar_fondo():
 func actualizar_zona():
 	var nueva_zona = 0
 
-	if monedas >= 200:
+	if monedas >= 700:
+		suma_monedas = 16
 		nueva_zona = 3
-	elif monedas >= 100:
+	elif monedas >= 400:
+		suma_monedas = 8
 		nueva_zona = 2
 	elif monedas >= 50:
+		suma_monedas = 4
 		nueva_zona = 1
 
 	if zona_actual != nueva_zona:
@@ -462,11 +466,11 @@ func partida_terminada():
 
 func _on_timer_monedas_timeout() -> void:
 	if en_dash:
-		monedas += 5
+		monedas += suma_monedas * 2
 	elif en_anti_dash:
-		monedas += 1
+		monedas += suma_monedas / 2
 	else:
-		monedas += 2
+		monedas += suma_monedas
 	$CanvasLayer/monedas_texto.text = str(monedas)
 	actualizar_zona()
 

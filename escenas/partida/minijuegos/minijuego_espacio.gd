@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		return
 	
 	tiempo_restante -= delta
-	tiempo_rest.text = str(ceil(tiempo_restante))
+	tiempo_rest.text = str(int(tiempo_restante))
 	
 	if tiempo_restante <= 0:
 		juego_activo = false
