@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="1_1jdpf"]
 [ext_resource type="Script" uid="uid://d137jcwt6cpgj" path="res://escenas/partida/gameover.gd" id="1_a64j1"]
+[ext_resource type="Texture2D" uid="uid://c1wp0nrtopgt7" path="res://sprites/volver_menu.png" id="3_tk68c"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=59068047]
 process_mode = 3
@@ -49,3 +50,20 @@ theme = ExtResource("1_1jdpf")
 theme_override_font_sizes/font_size = 12
 text = "Presione ENTER para volver a jugar"
 horizontal_alignment = 1
+
+[node name="boton_menu" type="TextureButton" parent="ColorRect" unique_id=599502834]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -67.0
+offset_top = 22.0
+offset_right = 259.0
+offset_bottom = 355.0
+grow_horizontal = 0
+scale = Vector2(0.15, 0.15)
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("3_tk68c")
+
+[connection signal="button_up" from="ColorRect/boton_menu" to="." method="_on_boton_menu_button_up"]

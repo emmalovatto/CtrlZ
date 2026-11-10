@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c54vfrfylmm6"
-path="res://.godot/imported/fondo_desierto.jpg-a9aef30617dbd6db4bb752e2505c0829.ctex"
+uid="uid://c1wp0nrtopgt7"
+path="res://.godot/imported/volver_menu.png-3f1c784bb7e614adf158a50d22bb3b1c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/fondo_desierto.jpg"
-dest_files=["res://.godot/imported/fondo_desierto.jpg-a9aef30617dbd6db4bb752e2505c0829.ctex"]
+source_file="res://sprites/volver_menu.png"
+dest_files=["res://.godot/imported/volver_menu.png-3f1c784bb7e614adf158a50d22bb3b1c.ctex"]
 
 [params]
 

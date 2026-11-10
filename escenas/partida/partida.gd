@@ -65,7 +65,7 @@ var fondos = [
 	preload("res://sprites/calle.png"),
 	preload("res://sprites/fondo_ciudad.png"),
 	preload("res://sprites/fondo_noche.png"),
-	preload("res://sprites/fondo_desierto.jpg")
+	preload("res://sprites/fondo_desierto.png")
 ]
 var zona_actual = 0
 
@@ -373,7 +373,7 @@ func actualizar_zona():
 	elif monedas >= 400:
 		suma_monedas = 8
 		nueva_zona = 2
-	elif monedas >= 50:
+	elif monedas >= 100:
 		suma_monedas = 4
 		nueva_zona = 1
 
