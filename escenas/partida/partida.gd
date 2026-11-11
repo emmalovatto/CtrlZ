@@ -37,6 +37,10 @@ var nafta = nafta_max
 var monedas = 0
 var suma_monedas = 2
 
+var es_demo = false
+var monedas_max_demo = 100
+var demo_finalizada = false
+
 var cliente_escena = preload("res://escenas/partida/personas/cliente.tscn")
 var clientes_sprites = [
 	preload("res://sprites/cliente.png"),
@@ -380,11 +384,6 @@ func actualizar_zona():
 	if zona_actual != nueva_zona:
 		zona_actual = nueva_zona
 		
-	#if zona_actual != nueva_zona:
-		#zona_actual = nueva_zona
-		#aplicar_estado_velocidad()
-		#transicionar_fondo()
-		
 		if en_dash:
 			velocidad = velocidades_zona[zona_actual] * 2.0
 		else:
@@ -408,10 +407,6 @@ func aplicar_velocidad_objeto(objeto):
 	
 	factor *= factor_estado()
 	objeto.set("velocidad", velocidad_base * factor)
-
-	#if en_dash:
-		#factor *= 2.0
-	#objeto.set("velocidad", velocidad_base * factor)
 	
 func actualizar_velocidades_durante_dash():
 	velocidad = velocidades_zona[zona_actual] * 2.0
@@ -455,6 +450,7 @@ func _on_ganado():
 	actualizar_zona()
 	$CanvasLayer/monedas_texto.text = str(monedas)
 	get_tree().paused = false
+	comprobar_limite_demo()
 	
 func _on_perdido():
 	get_tree().paused = false
@@ -473,6 +469,7 @@ func _on_timer_monedas_timeout() -> void:
 		monedas += suma_monedas
 	$CanvasLayer/monedas_texto.text = str(monedas)
 	actualizar_zona()
+	comprobar_limite_demo()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -486,3 +483,18 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.is_in_group("nafta"):
 		_on_agarrar_nafta()
 		area.queue_free()
+		
+
+# DEMO
+
+func comprobar_limite_demo():
+	if !es_demo or demo_finalizada:
+		return
+
+	if monedas >= monedas_max_demo:
+		demo_finalizada = true
+		finalizar_demo()
+		
+func finalizar_demo():
+	$FinalDemo.visible = true
+	get_tree().paused = true

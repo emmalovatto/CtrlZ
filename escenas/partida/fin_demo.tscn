@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dw7cib75ao5oh"]
+
+[ext_resource type="Script" uid="uid://dv87cafh5pmn6" path="res://escenas/partida/fin_demo.gd" id="1_juomc"]
+[ext_resource type="Theme" uid="uid://cas5ayvudodcw" path="res://resources/confirmar_salida.tres" id="2_ungk6"]
+
+[node name="FinalDemo" type="CanvasLayer" unique_id=1328804681]
+script = ExtResource("1_juomc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=523369582]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1238675396]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 28
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=359845483]
+layout_mode = 2
+theme = ExtResource("2_ungk6")
+theme_override_colors/font_color = Color(1, 0.3529412, 0.7137255, 1)
+theme_override_constants/line_spacing = 3
+theme_override_font_sizes/font_size = 50
+text = "FIN DE LA DEMO"
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1761376768]
+layout_mode = 2
+theme = ExtResource("2_ungk6")
+theme_override_font_sizes/font_size = 12
+text = "Presione ENTER para volver a jugar"
+horizontal_alignment = 1

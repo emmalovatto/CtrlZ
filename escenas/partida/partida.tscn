@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://b60pr6y0gkjcs" path="res://audio/efectos_sonido/game-over.wav" id="12_tkxrp"]
 [ext_resource type="AudioStream" uid="uid://xlev1subr8jn" path="res://audio/efectos_sonido/frenar_pedido.mp3" id="14_tkxrp"]
 [ext_resource type="AudioStream" uid="uid://cw7mqae4m71tf" path="res://audio/efectos_sonido/monedas.wav" id="15_pgpir"]
+[ext_resource type="PackedScene" uid="uid://dw7cib75ao5oh" path="res://escenas/partida/fin_demo.tscn" id="16_w8d88"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qvgj"]
 bg_color = Color(0.07058824, 0.078431375, 0.16078432, 0.47058824)
@@ -166,6 +167,8 @@ autostart = true
 [node name="Nafta" type="AudioStreamPlayer" parent="." unique_id=1557574749]
 
 [node name="NaftaBaja" type="AudioStreamPlayer" parent="." unique_id=1938382728]
+
+[node name="FinalDemo" parent="." unique_id=1328804681 instance=ExtResource("16_w8d88")]
 
 [connection signal="finished" from="MusicaJuego" to="." method="_on_musica_juego_finished"]
 [connection signal="area_entered" from="camion/Area2D" to="." method="_on_area_2d_area_entered"]
