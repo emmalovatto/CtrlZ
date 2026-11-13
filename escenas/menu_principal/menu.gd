@@ -11,6 +11,7 @@ extends Control
 @onready var musica_juego = $MusicaJuego
 
 func _ready() -> void:
+	
 	$ConfirmarSalida.visible = false
 	musica_menu.play()
 

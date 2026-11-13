@@ -24,6 +24,7 @@ theme = ExtResource("2_qaulv")
 color = Color(0, 0, 0, 0.8235294)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=456411731]
+clip_contents = true
 custom_minimum_size = Vector2(500, 300)
 anchors_preset = 8
 anchor_left = 0.5
@@ -111,6 +112,9 @@ text = "Musica"
 layout_mode = 2
 theme_override_constants/margin_top = 50
 
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer" unique_id=1438457094]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1803388538]
 layout_mode = 2
 alignment = 1
@@ -138,6 +142,7 @@ bus = &"Sfx"
 
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer2/Sfx" to="." method="_on_sfx_mouse_entered"]
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer2/Music" to="." method="_on_music_mouse_entered"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/OptionButton" to="." method="_on_layout_opciones_item_selected"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_button_up"]
 [connection signal="mouse_entered" from="PanelContainer/VBoxContainer/HBoxContainer/cancelar" to="." method="_on_cancelar_mouse_entered"]
 [connection signal="button_up" from="PanelContainer/VBoxContainer/HBoxContainer/guardar" to="." method="_on_guardar_button_up"]

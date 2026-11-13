@@ -21,6 +21,10 @@ boot_splash/minimum_display_time=1500
 
 Puntuaciones="*uid://7u08dmd6ucux"
 
+[display]
+
+window/size/initial_position_type=0
+
 [input]
 
 pausar={
